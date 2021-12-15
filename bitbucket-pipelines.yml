@@ -11,7 +11,7 @@ pipelines:
   default:
     - parallel:
       - step:
-          name: Build and Test
+          name: EQ Tests
           caches:
             - maven
           script:
