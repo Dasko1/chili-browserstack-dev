@@ -6,6 +6,7 @@
   "capabilities": {
     "project": "EQ",
     "build": "EQ Tests",
+    "name": "LoginPage",
     "browserstack.debug": true
   },
 

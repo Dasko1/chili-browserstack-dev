@@ -3,16 +3,17 @@ package com.demandbridge.single;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.Selenide;
+import com.demandbridge.BrowserStackTest;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.testng.annotations.Test;
 
 import static com.codeborne.selenide.Selenide.*;
+import static org.openqa.selenium.Keys.ENTER;
 
-public class LoginPage {
+public class LoginPage extends BrowserStackTest {
 
     @Test
-    public void loginPageTest(){
+    public void loginPageTest (){
 
         open("https://qnet.e-quantum2k.com/~support2/cgi-bin/login-client.cgi?Client=REDS2");
         $(".eqd-Heading > img:nth-child(1)").shouldBe(Condition.visible);
@@ -41,7 +42,7 @@ public class LoginPage {
         ElementsCollection pageItems = $$("body");
         System.out.println(pageItems);
         $(By.xpath("//*[@id=\"eqcNavLogout\"]")).shouldBe(Condition.visible);
-        $("#SignInLogin").shouldBe(Condition.visible).sendKeys("newuser5@test.com");
+        $("#SignInLogin").shouldBe(Condition.visible).sendKeys("newuser18@test.com");
         $(".eqcButtonStd").shouldBe(Condition.visible).click();
         // Fill in form.
         $(By.id("FName")).sendKeys("New");
@@ -49,13 +50,11 @@ public class LoginPage {
         $(By.id("Phone")).sendKeys("410-555-5554");
         $(By.id("Password")).sendKeys("abcd1234");
         $(By.id("RePassword")).sendKeys("abcd1234");
-        switchTo().activeElement().sendKeys(Keys.ENTER);
+        switchTo().activeElement().sendKeys(ENTER);
         $(By.name("Company")).shouldBe(Condition.visible).sendKeys("Company X");
         // Uncomment when you can remove the New User from admin as a teardown step.
         // The best thing is, after pushing the Submit button, then log in as the new user and then go to admin and delete it.
         $(By.id("NextStep")).shouldBe(Condition.visible).click();
-        switchTo().activeElement().sendKeys(Keys.ENTER);
-
-        Selenide.closeWindow();
+        switchTo().alert().accept();
     }
 }

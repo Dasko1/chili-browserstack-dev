@@ -5,9 +5,9 @@
 		<parameter name="config" value="single.conf.json"/>
 		<parameter name="environment" value="chrome"/>
 		<classes>
-			<!--class name="com.demandbridge.single.DistributorSetup"/-->
-			<!--class name="com.demandbridge.single.LoginPage"/-->
-			<class name="com.demandbridge.single.Retail"/>
+			<class name="com.demandbridge.single.LoginPage"/>
+			<!--class name="com.demandbridge.single.Retail"/>
+			<class name="com.demandbridge.single.DistributorSetup"/-->
 		</classes>
 	</test>
 </suite>

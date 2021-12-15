@@ -93,8 +93,8 @@
                     <artifactId>maven-surefire-plugin</artifactId>
                     <configuration>
                         <suiteXmlFiles>
-                            <!--suiteXmlFile>config/chili.testng.xml</suiteXmlFile-->
                             <suiteXmlFile>config/single.testng.xml</suiteXmlFile>
+                            <!--suiteXmlFile>config/parallel.testng.xml</suiteXmlFile-->
                         </suiteXmlFiles>
                     </configuration>
                 </plugin>
