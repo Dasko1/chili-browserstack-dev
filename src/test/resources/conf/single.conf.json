@@ -1,0 +1,17 @@
+{
+  "server": "hub-cloud.browserstack.com",
+  "user": "adaskalopoulos1",
+  "key": "RwofYrpjLEBwrwzpTdSc",
+
+  "capabilities": {
+    "project": "EQ",
+    "build": "EQ Tests",
+    "browserstack.debug": true
+  },
+
+  "environments": {
+    "chrome": {
+      "browser": "chrome"
+    }
+  }
+}
