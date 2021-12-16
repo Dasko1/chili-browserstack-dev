@@ -42,7 +42,7 @@ public class LoginPage extends BrowserStackTest {
         ElementsCollection pageItems = $$("body");
         System.out.println(pageItems);
         $(By.xpath("//*[@id=\"eqcNavLogout\"]")).shouldBe(Condition.visible);
-        $("#SignInLogin").shouldBe(Condition.visible).sendKeys("newuser20@test.com");
+        $("#SignInLogin").shouldBe(Condition.visible).sendKeys("newuser21@test.com");
         $(".eqcButtonStd").shouldBe(Condition.visible).click();
         // Fill in form.
         $(By.id("FName")).sendKeys("New");
