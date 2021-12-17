@@ -13,7 +13,11 @@ public class Administration {
     @Test
     public void administrationTest(){
 
-        open("https://qnet.e-quantum2k.com/~support2/cgi-bin/nph-login.cgi?Client=&CC=&User=support2&Passwd=support2FMDS");
+        // open("https://qnet.e-quantum2k.com/~support2/cgi-bin/nph-login.cgi?Client=&CC=&User=support2&Passwd=support2FMDS");
+        open("https://qnet.e-quantum2k.com/~support2/cgi-bin/qnet-site-setup.cgi");
+        $(By.id("inUserName")).sendKeys("automation@test.com");
+        $(By.id("inPW")).sendKeys("password");
+        $(By.className("eqd-SignIn")).click();
         $("body > table:nth-child(1) > tbody:nth-child(1) > tr:nth-child(1) > td:nth-child(1) > span:nth-child(1)")
                 .shouldBe(Condition.visible);
         // Open the Administration dropdown; click and assert.
