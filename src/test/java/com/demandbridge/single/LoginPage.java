@@ -13,12 +13,12 @@ import static org.openqa.selenium.Keys.ENTER;
 public class LoginPage extends BrowserStackTest {
 
     @Test
-    public void loginPageTest (){
+    public void loginPageTest(){
 
         open("https://qnet.e-quantum2k.com/~support2/cgi-bin/login-client.cgi?Client=REDS2");
         $(".eqd-Heading > img:nth-child(1)").shouldBe(Condition.visible);
         // Verify that a Welcome message appears; as of 30 Nov 21, this is broken/non-existant.
-        $("#divBottomMsg").shouldBe(Condition.text("Bottom message on Redesign II."));
+        $("#divBottomMsg").shouldBe(Condition.text("Bottom message on Redesign Two."));
         // Login: fail first login and assert message.
         $(By.id("inputEmail")).sendKeys("XXXXXX");
         $(By.id("inputPW")).sendKeys("TestingReds2");
@@ -35,14 +35,14 @@ public class LoginPage extends BrowserStackTest {
         $(By.id("eqcNavLogout")).shouldBe(Condition.visible).click();
 
         // New User Registration: switch to the new open tab!
-        $(By.id("divBottomMsg")).shouldBe(Condition.text("Bottom message on Redesign II. "));
+        $(By.id("divBottomMsg")).shouldBe(Condition.text("Bottom message on Redesign Two."));
         $(By.linkText("here")).shouldBe(Condition.visible).click();
         switchTo().window(1);
         System.out.println(Selenide.title());
         ElementsCollection pageItems = $$("body");
         System.out.println(pageItems);
         $(By.xpath("//*[@id=\"eqcNavLogout\"]")).shouldBe(Condition.visible);
-        $("#SignInLogin").shouldBe(Condition.visible).sendKeys("newuser22@test.com");
+        $("#SignInLogin").shouldBe(Condition.visible).sendKeys("newuser24@test.com");
         $(".eqcButtonStd").shouldBe(Condition.visible).click();
         // Fill in form.
         $(By.id("FName")).sendKeys("New");
