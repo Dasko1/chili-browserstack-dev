@@ -1,6 +1,5 @@
 package com.demandbridge.single;
 
-import com.demandbridge.single.pages.OptionalModules;
 import org.testng.annotations.Test;
 
 public class DistributorSetup {
@@ -14,6 +13,6 @@ public class DistributorSetup {
 //        new Setup().setupTest();
 //        new SiteAppearance().siteAppearanceTest();
 //        new Templates().templatesTest();
-        new OptionalModules().optionalModulesTest();
+//        new OptionalModules().optionalModulesTest();
     }
 }
