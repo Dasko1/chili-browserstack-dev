@@ -4,7 +4,9 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.Selenide;
 import com.demandbridge.BrowserStackTest;
+import com.demandbridge.single.pages.DeleteUser;
 import org.openqa.selenium.By;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.Test;
 
 import static com.codeborne.selenide.Selenide.*;
@@ -55,6 +57,13 @@ public class LoginPage extends BrowserStackTest {
         // Uncomment when you can remove the New User from admin as a teardown step.
         // The best thing is, after pushing the Submit button, then log in as the new user and then go to admin and delete it.
         $(By.id("NextStep")).shouldBe(Condition.visible).click();
+        Selenide.sleep(1500);
         switchTo().alert().accept();
+    }
+
+    @AfterTest
+    public void deleteNewUser(){
+        Selenide.sleep(5000);
+        new DeleteUser().deleteUser();
     }
 }

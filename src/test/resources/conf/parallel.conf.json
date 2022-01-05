@@ -1,0 +1,30 @@
+{
+  "server": "hub-cloud.browserstack.com",
+  "user": "BROWSERSTACK_USERNAME",
+  "key": "BROWSERSTACK_ACCESS_KEY",
+
+  "capabilities": {
+    "project": "EQ Tests",
+    "build": "EQ Tests",
+    "name": "LoginPage",
+    "browserstack.debug": true
+  },
+
+  "environments": {
+    "chrome": {
+      "browser": "chrome"
+    },
+    "firefox": {
+      "browser": "firefox"
+    },
+    "edge": {
+      "browser": "edge"
+    },
+    "safari": {
+      "browser": "safari",
+      "browser_version": "latest",
+      "os": "OS X",
+      "os_version": "Catalina"
+    }
+  }
+}
