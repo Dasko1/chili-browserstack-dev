@@ -2,12 +2,13 @@ package com.demandbridge.single.pages;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
+import com.demandbridge.BrowserStackTest;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 
 import static com.codeborne.selenide.Selenide.*;
 
-public class DeleteUser {
+public class DeleteUser extends BrowserStackTest {
 
     @Test
     public void deleteUser(){
