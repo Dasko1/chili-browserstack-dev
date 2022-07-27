@@ -1,0 +1,9 @@
+EQ Test Report Ideas
+1. Go to http://qabrowserstackdashboard.run.dev.cf.demandbridge.io/
+2. Click on top left: EQ Tests
+3. Click "View Sessions"; Note: click "View Replay" downloads the video
+4. What we are trying to implement is for the Viewer to be able to see exactly which tests have been run and what the status is.  Our next step is to put each individual test name in the title instead of just Automation Reports - DEV.
+5. After, tests will be run by suite: tests will be organized thematically so you can see the results yourself instead of just a long, big list of tests. 
+6. After that, you can start the test suites yourself.  
+7. These can be run automatically every week, for example, in Bitbucket and the results will appear here.  You can see if any of the suites will have a fail because the QA Browserstack Dashboard will appear red.  You can click the View Sessions link and the click View Sessions again to see the video and see where the fail is.  
+8. You will be able to run the suites yourself from the QA Browserstack Dashboard.

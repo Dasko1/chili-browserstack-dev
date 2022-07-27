@@ -1,0 +1,282 @@
+package com.demandbridge.single;
+
+import org.junit.jupiter.api.Assertions;
+import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.awt.*;
+import java.net.MalformedURLException;
+import java.net.URL;
+
+import static org.openqa.selenium.Keys.ENTER;
+
+public class lookBook {
+
+    // Run in BrowserStack Dashboard
+    public static final String AUTOMATE_USERNAME = "anastasiosdaskal1";
+    public static final String AUTOMATE_ACCESS_KEY = "swze39oMCvW69Gsgh8qA";
+    public static final String URL = "https://" + AUTOMATE_USERNAME + ":" + AUTOMATE_ACCESS_KEY + "@hub-cloud.browserstack.com/wd/hub";
+
+
+    public static void main(String[] args) throws MalformedURLException, AWTException {
+
+        DesiredCapabilities caps = new DesiredCapabilities();
+        caps.setCapability("os_version", "10");
+        // caps.setCapability("resolution", "1920x1080");
+        caps.setCapability("browser", "Chrome");
+        caps.setCapability("browser_version", "latest");
+        caps.setCapability("os", "Windows");
+        caps.setCapability("name", "ChiliLookBook"); // test name
+        caps.setCapability("build", "ChiliLookBook 1"); // CI/CD job or build name
+
+        // Go to Generic page and login
+        WebDriver driver = new RemoteWebDriver(new URL(URL), caps);
+        driver.get("https://generic.development.dbenterprise.com/");
+        Robot robot = new Robot();
+        driver.manage().window().maximize();
+        WebElement usernameField = driver.findElement(By.name("username"));
+        usernameField.sendKeys("daskoadmin");
+        WebElement passwordField = driver.findElement(By.name("password"));
+        passwordField.sendKeys("dasko");
+        WebElement signinButton = driver.findElement(By.id("loginbutton_btn"));
+        signinButton.click();
+
+        System.out.println(driver.getTitle());
+
+        // Click the Shop link
+        robot.delay(1500);
+        Assertions.assertTrue(driver.getTitle().contentEquals("DB Commerce"));
+        WebElement shopLink = driver.findElement(By.linkText("SHOP"));
+        shopLink.click();
+        robot.delay(2000);
+
+        // Click Corporate Collateral to go to Lookbook
+        WebElement corpColl = driver.findElement(By.linkText("Corporate Collateral"));
+        Assertions.assertTrue(corpColl.isDisplayed());
+        corpColl.click();
+        robot.delay(2000);
+        WebElement lookbook = driver.findElement(By.linkText("Property Lookbook"));
+        Assertions.assertTrue(lookbook.isDisplayed());
+        lookbook.click();
+
+        // Click on Flipbook in dropdown
+        robot.delay(5000);
+        WebElement flipbook = driver.findElement(By.id("item-group_cbo"));
+        flipbook.click();
+        robot.delay(1500);
+        WebElement flipbook_option = driver.findElement(By.cssSelector("#ext-gen28 > div.x-combo-list-item.x-combo-selected"));
+        flipbook_option.click();
+
+        // Push Customize button
+        Assertions.assertEquals("Property Lookbook", "Property Lookbook");
+        robot.delay(9000);
+        WebElement customizeBtn = driver.findElement(By.id("customizebutton_btn"));
+        robot.delay(4000);
+        customizeBtn.click();
+
+        // Customize Lookbook: start with Assertions; first, wait for page to load
+        robot.delay(15000);
+        Assertions.assertEquals("Help Layer", "Help Layer");
+        Assertions.assertEquals("Prepared For", "Prepared For");
+        Assertions.assertEquals("From", "From");
+        Assertions.assertEquals("Job Title", "Job Title");
+        Assertions.assertEquals("Address", "Address");
+        Assertions.assertEquals("Email", "Email");
+        Assertions.assertEquals("Message", "Message");
+        Assertions.assertEquals("Logo", "Logo");
+
+        //Hints: assert that they first appear - use Visual Regression if the hints can't be found
+        Assertions.assertEquals("Please refer to the hints", "Please refer to the hints");
+        // Now hide hints
+        WebElement hideHints = driver.findElement(By.id("ToggleHelp-button-03804BB8-0938-420D-89FE-628CFF0C9019"));
+        Assertions.assertTrue(hideHints.isDisplayed());
+        hideHints.click();                                      // Check next if hints are now gone
+        Assertions.assertNotEquals("Please refer to the hints", "");
+
+        // Edit fields
+        robot.delay(2000);
+        WebElement preparedFor = driver.findElement(By.name("Recipient"));
+        preparedFor.clear();
+        preparedFor.sendKeys("jane doe");
+        WebElement name = driver.findElement(By.name("Name"));
+        name.clear();
+        name.sendKeys("Jack Smith");
+        robot.delay(1000);
+        WebElement title = driver.findElement(By.name("Title"));
+        title.clear();
+        title.sendKeys("Florida Property Manager");
+        // Address
+        robot.delay(2000);
+        WebElement address = driver.findElement(By.name("Address"));
+        address.clear();
+        address.sendKeys("Reno Office");
+        address.sendKeys(ENTER);
+        WebElement email = driver.findElement(By.name("Email"));
+        email.clear();
+        robot.delay(1500);
+        email.sendKeys("mschwartz");
+        // Push Save button
+        robot.delay(2000);
+        WebElement save = driver.findElement(By.id("chili-customize-save-button"));
+        Assertions.assertTrue(save.isDisplayed());
+        save.click();
+        robot.delay(2000);
+
+        // Undo/Redo
+        WebElement undo_btn = driver.findElement(By.id("chili-undo-button"));
+        WebElement redo_btn = driver.findElement(By.id("chili-redo-button"));
+        undo_btn.click();
+        Assertions.assertTrue(redo_btn.isEnabled());
+        redo_btn.click();
+
+        // Jump To Page:
+        WebElement next_btn = driver.findElement(By.id("chili-next-button"));
+        WebElement prev_btn = driver.findElement(By.id("chili-previous-button"));
+        next_btn.click();
+        Assertions.assertTrue(prev_btn.isEnabled());
+        next_btn.click();
+        next_btn.click();
+        prev_btn.click();
+
+        // Profile: Add
+        robot.delay(3000);
+        WebElement add_a_profile = driver.findElement(By.id("chili_customize_add_profile_button"));
+        add_a_profile.click();
+        WebElement cancel_profile = driver.findElement(By.xpath("//*[@id=\"chili_new_profile_name_wrapper\"]/div[1]/a[2]"));
+        cancel_profile.click();
+        robot.delay(1000);
+        add_a_profile.click();
+        WebElement new_profile = driver.findElement(By.id("chili_new_profile_name"));
+        new_profile.click();
+        new_profile.sendKeys("Auto Test Profile");
+        robot.delay(1500);
+        WebElement save_profile_btn = driver.findElement(By.xpath("//*[@id=\"chili_new_profile_name_wrapper\"]/div[1]/a[1]"));
+        save_profile_btn.click();
+        robot.delay(5000);
+        // Check for new profile
+        robot.delay(3000);
+        WebElement show_profiles = driver.findElement(By.name("profileCombo"));
+        show_profiles.click();
+        Assertions.assertEquals("Auto Test Profile", "Auto Test Profile");
+        // Delete Profile
+        robot.delay(1500);
+        WebElement delete_profile = driver.findElement(By.id("chili-delete-profile-icon"));
+        delete_profile.click();
+        robot.delay(500);
+        show_profiles.click();
+        Assertions.assertNotEquals("Auto Test Profile", "");
+        // Change Profile
+        robot.delay(1000);
+        // show_profiles.click();
+        robot.delay(1500);
+        // Open Profile
+        show_profiles.sendKeys(Keys.DOWN);
+        show_profiles.sendKeys(Keys.DOWN);
+        show_profiles.sendKeys(Keys.DOWN);
+        show_profiles.sendKeys(Keys.RETURN);
+
+        // Tooltips: email first and then address.
+        Actions act = new Actions(driver);
+        WebElement email_help = driver.findElement(By.id("Email_help"));
+        act.moveToElement(email_help).perform();
+        email.sendKeys("mschwartz");
+        robot.delay(1500);
+        Assertions.assertEquals("Enter username only", "Enter username only");
+        WebElement address_tooltip = driver.findElement(By.id("Address_help"));
+        act.moveToElement(address_tooltip).perform();
+        robot.delay(250);
+
+        // Switch tabs
+        WebElement locationsTab = driver.findElement(By.id("chili-tab-panel__tab_971"));
+        locationsTab.click();
+        Assertions.assertEquals("Caption 1", "Caption 1");
+        WebElement imageOne = driver.findElement(By.id("chili-variable-uploadButton-Image1"));
+        imageOne.click();
+        robot.delay(1000);
+        WebElement photoA = driver.findElement(By.linkText("photoA.jpg"));
+        photoA.click();
+        robot.delay(1500);
+
+        // Switch back to Contact Information tab
+        WebElement contact_info_tab = driver.findElement(By.id("chili-tab-panel__tab_970"));
+        contact_info_tab.click();
+
+        // Change Logo
+        WebElement reset = driver.findElement(By.id("chili-variable-resetButton-Logo"));
+        reset.click();
+        WebElement upload = driver.findElement(By.id("chili-variable-uploadButton-Logo"));
+        upload.click();
+        robot.delay(3000);
+        WebElement logo = driver.findElement(By.linkText("generic_logo.pdf"));
+        logo.click();
+
+        // Resizer
+        WebElement zoom_out = driver.findElement(By.id("chili-zoom-out-button"));
+        zoom_out.click();
+        robot.delay(1000);
+        WebElement zoom = driver.findElement(By.id("chili-zoom-button"));
+        zoom.click();
+        robot.delay(3000);
+
+        // Push the View Proof button; View Proof disabled for flipbook
+        email.clear();
+        email.sendKeys("mschwartz");
+        WebElement viewProofButton = driver.findElement(By.id("chili-view-proof-text"));
+        Assertions.assertTrue(viewProofButton.isDisplayed());
+        viewProofButton.click();
+        robot.delay(3500);
+
+        // Lines 234-48 are for the flipbook; ll.253-61 are for the lookbook. 
+        /*WebElement create_flipbook = driver.findElement(By.id("chili-flipbook-text"));
+        Assertions.assertTrue(create_flipbook.isEnabled());
+        create_flipbook.click();
+
+        robot.delay(9000);
+        driver.switchTo().alert().accept();
+        WebElement yes_btn = driver.findElement(By.id("generateFlipbook"));
+        yes_btn.click();
+        WebElement generate_flipbook = driver.findElement(By.id("generateFlipbook"));
+        generate_flipbook.click();
+        robot.delay(3000);
+        Assertions.assertEquals("Your flipbook has been submitted for processing,", "Your flipbook has been submitted for processing,");
+        Assertions.assertEquals("Thank you for placing your order!", "Thank you for placing your order!");
+        WebElement continue_shopping_btn = driver.findElement(By.linkText("CONTINUE SHOPPING"));
+        continue_shopping_btn.click();*/
+
+        Assertions.assertEquals("SHOP", "SHOP");
+
+//       The following lines were for the lookbook; the above lines are for the flipbook
+        WebElement approveAdd2Cart = driver.findElement(By.id("chili-step2a-text"));
+        WebElement approveCheckout = driver.findElement(By.id("chili-step2b-text"));
+        Assertions.assertTrue(approveCheckout.isEnabled());
+        Assertions.assertTrue(approveAdd2Cart.isEnabled());
+
+        // Push Approve & Checkout
+        robot.delay(7000);
+        approveCheckout.click();
+        robot.delay(10000);
+
+
+        // Setting the status of test as 'passed' or 'failed' based on the condition; if title of the web page contains 'DB Commerce'
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        try {
+            wait.until(ExpectedConditions.urlContains("CheckoutV2"));
+            markTestStatus("passed","Yaay the URL contains 'CheckoutV2'!",driver);
+        }
+        catch(Exception e) {
+            markTestStatus("failed","URL does not contain 'CheckoutV2'!",driver);
+        }
+
+        driver.quit();
+    }
+
+    // This method accepts the status, reason and WebDriver instance and marks the test on BrowserStack
+    public static void markTestStatus(String status, String reason, WebDriver driver) {
+        JavascriptExecutor jse = (JavascriptExecutor)driver;
+        jse.executeScript("browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\": \""+status+"\", \"reason\": \""+reason+"\"}}");
+    }
+}
