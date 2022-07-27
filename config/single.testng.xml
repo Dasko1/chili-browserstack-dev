@@ -5,9 +5,17 @@
 		<parameter name="config" value="single.conf.json"/>
 		<parameter name="environment" value="chrome"/>
 		<classes>
-			<class name="com.demandbridge.single.LoginPage"/>
-			<!--class name="com.demandbridge.single.Retail"/>
-			<class name="com.demandbridge.single.DistributorSetup"/-->
+			<!--class name="com.demandbridge.single.LoginPage"/-->
+			<!--class name="com.demandbridge.single.DeleteUser"/-->
+			<!--class name="com.demandbridge.single.Retail"/-->
+			<!--class name="com.demandbridge.single.RetailCredit"/-->
+			<!--class name="com.demandbridge.single.DistributorSetup"/-->
+			<!--class name="com.demandbridge.single.ClientItemRestrictions"/-->
+			<!--class name="com.demandbridge.single.ItemPropertiesRestrictions"/-->
+			<!--class name="com.demandbridge.single.EQCDistributorSetup"/-->
+			<!--class name="com.demandbridge.single.MinMax"/-->
+			<!--class name="com.demandbridge.single.AutomationReports"/-->
+			<!--class name="com.demandbridge.single.AutomationReportsOne"/-->
 		</classes>
 	</test>
 </suite>

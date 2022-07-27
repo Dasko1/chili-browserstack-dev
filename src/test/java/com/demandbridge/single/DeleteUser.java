@@ -1,4 +1,4 @@
-package com.demandbridge.single.pages;
+package com.demandbridge.single;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
@@ -29,7 +29,7 @@ public class DeleteUser extends BrowserStackTest {
         $(By.name("UserSearchB")).sendKeys("newuser101@test.com");
         $("html body.eqd-Body div.uaWrapper div.uaHLine div.uaLSide div.eqcButtonStd.uaButton").click();    // Search button
         Selenide.sleep(3000);
-        $(By.xpath("//*[@id=\"delete1\"]")).shouldBe(Condition.visible).click();                                               // Checkbox
+        $(By.xpath("//*[@id=\"delete1\"]")).shouldBe(Condition.visible).click();                                     // Checkbox
         $("div.eqcButtonStd:nth-child(5)").click();                                                        // Delete button
         $(By.className("QNET_ConfirmButtonOK")).shouldBe(Condition.visible).click();                                // No button
         executeJavaScript("deleteSelectedUsers();");

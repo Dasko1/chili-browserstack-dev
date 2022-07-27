@@ -13,7 +13,6 @@ public class Administration {
     @Test
     public void administrationTest(){
 
-        // open("https://qnet.e-quantum2k.com/~support2/cgi-bin/nph-login.cgi?Client=&CC=&User=support2&Passwd=support2FMDS");
         open("https://qnet.e-quantum2k.com/~support2/cgi-bin/qnet-site-setup.cgi");
         $(By.id("inUserName")).sendKeys("automation@test.com");
         $(By.id("inPW")).sendKeys("password");

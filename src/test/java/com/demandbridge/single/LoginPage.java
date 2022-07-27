@@ -4,9 +4,7 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.Selenide;
 import com.demandbridge.BrowserStackTest;
-import com.demandbridge.single.pages.DeleteUser;
 import org.openqa.selenium.By;
-import org.testng.annotations.AfterTest;
 import org.testng.annotations.Test;
 
 import static com.codeborne.selenide.Selenide.*;
@@ -59,11 +57,8 @@ public class LoginPage extends BrowserStackTest {
         $(By.id("NextStep")).shouldBe(Condition.visible).click();
         Selenide.sleep(1500);
         switchTo().alert().accept();
-    }
 
-    @AfterTest
-    public void deleteNewUser(){
-        Selenide.sleep(5000);
-        new DeleteUser().deleteUser();
+        // Delete newly-registered
+        // new DeleteUser().deleteUser();
     }
 }

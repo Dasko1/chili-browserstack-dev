@@ -6,7 +6,7 @@
   "capabilities": {
     "project": "EQ Tests",
     "build": "EQ Tests",
-    "name": "LoginPage",
+    "name": "Client Item Restrictions",
     "browserstack.debug": true
   },
 

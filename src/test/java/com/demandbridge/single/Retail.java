@@ -3,12 +3,17 @@ package com.demandbridge.single;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
+import com.demandbridge.BrowserStackTest;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 
 import static com.codeborne.selenide.Selenide.*;
 
-public class Retail {
+public class Retail extends BrowserStackTest {
 
     @Test
     public void retailTest() {
@@ -84,5 +89,26 @@ public class Retail {
         $(By.id("qnocDivUserName")).shouldBe(Condition.visible);
         $(By.id("qnocMsgTop")).shouldBe(Condition.visible);
         Selenide.sleep(3000);
+
+        // Setting the status of test as 'passed' or 'failed' based on the condition; if title of the web page contains 'DB Commerce'
+        WebDriverWait wait = new WebDriverWait(driver, 15);
+        try {
+            wait.until(ExpectedConditions.urlContains("order-confirmation.cgi"));
+            wait.until(ExpectedConditions.titleIs("Order Receipt"));
+            markTestStatus("passed", "The Title contains 'Order Receipt'",driver);
+            markTestStatus("passed","Yaay the URL contains 'order-confirmation.cgi'!",driver);
+        }
+        catch(Exception e) {
+            markTestStatus("failed", "The Title does not contain 'Order Receipt'",driver);
+            markTestStatus("failed","The URL does not contain 'order-confirmation.cgi'",driver);
+        }
+
+        driver.quit();
+    }
+
+    // This method accepts the status, reason and WebDriver instance and marks the test on BrowserStack
+    public static void markTestStatus(String status, String reason, WebDriver driver) {
+        JavascriptExecutor jse = (JavascriptExecutor)driver;
+        jse.executeScript("browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\": \""+status+"\", \"reason\": \""+reason+"\"}}");
     }
 }

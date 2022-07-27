@@ -67,8 +67,8 @@ public class BrowserStackTest {
             l.start(options);
         }
 
-        driver = new RemoteWebDriver(new URL("https://" + username + ":" + accessKey + "@" + config.get("server") + "/wd/hub"), capabilities);
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver = new RemoteWebDriver(new URL("https://" + "adaskalopoulos1" + ":" + "RwofYrpjLEBwrwzpTdSc" + "@" + config.get("server") + "/wd/hub"), capabilities);
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         sessionId = driver.getSessionId().toString();
 
         WebDriverRunner.setWebDriver(driver);
