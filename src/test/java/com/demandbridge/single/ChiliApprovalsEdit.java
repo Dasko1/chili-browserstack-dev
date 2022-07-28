@@ -1,5 +1,6 @@
 package com.demandbridge.single;
 
+import com.demandbridge.single.pages.MailosaurCheck;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -147,6 +148,12 @@ public class ChiliApprovalsEdit {
         Assertions.assertEquals("The order has been approved.", "The order has been approved.");
         robot.delay(3000);
 
+        // Check Mailosaur for lowres PDF
+        new MailosaurCheck().mailosaurCheckTest();
+
+        // Try to download the high-res PDF and XML via an FTP download; read XML to assert the edit in the above l.123
+
+
         // Setting the status of test as 'passed' or 'failed' based on the condition; if title of the web page contains 'DB Commerce'
         WebDriverWait wait = new WebDriverWait(driver, 10);
         try {
@@ -164,8 +171,6 @@ public class ChiliApprovalsEdit {
     public static void markTestStatus(String status, String reason, WebDriver driver) {
         JavascriptExecutor jse = (JavascriptExecutor)driver;
         jse.executeScript("browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\": \""+status+"\", \"reason\": \""+reason+"\"}}");
-        System.out.println(jse.executeScript("browserstack_executor: {\"action\": \"fileExists\", \"arguments\": {\"fileName\": \"COR001.pdf\"}}"));
+        System.out.println("Expected file download confirmed: " + (jse.executeScript("browserstack_executor: {\"action\": \"fileExists\", \"arguments\": {\"fileName\": \"COR001.pdf\"}}")));
     }
 }
-
-// To-D0: verify card download, check if XML has been received.
