@@ -152,6 +152,7 @@ public class ChiliApprovalsEdit {
         new MailosaurCheck().mailosaurCheckTest();
 
         // Try to download the high-res PDF and XML via an FTP download; read XML to assert the edit in the above l.123
+        // Funny finding: downloading a file from ftp is eash (FPTDownloadDB.java), but sftp is difficult (FTPDownloadDB1.java)
 
 
         // Setting the status of test as 'passed' or 'failed' based on the condition; if title of the web page contains 'DB Commerce'
@@ -171,6 +172,7 @@ public class ChiliApprovalsEdit {
     public static void markTestStatus(String status, String reason, WebDriver driver) {
         JavascriptExecutor jse = (JavascriptExecutor)driver;
         jse.executeScript("browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\": \""+status+"\", \"reason\": \""+reason+"\"}}");
-        System.out.println("Expected file download confirmed: " + (jse.executeScript("browserstack_executor: {\"action\": \"fileExists\", \"arguments\": {\"fileName\": \"COR001.pdf\"}}")));
+        System.out.println("Expected file download confirmed: " + (jse.executeScript("browserstack_executor: {\"action\": \"fileExists\", \"arguments\": {\"fileName\": \"00-X00248-2_doc_lowres.pdf\"}}")));
+        System.out.println("Expected file download confirmed: " + (jse.executeScript("browserstack_executor: {\"action\": \"fileExists\", \"arguments\": {\"fileName\": \"00-X00248-2_doc_highres.pdf\"}}")));
     }
 }

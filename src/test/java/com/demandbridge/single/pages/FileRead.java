@@ -8,14 +8,13 @@ import java.nio.file.Paths;
 public class FileRead {
 
     public static void main() {
-        int n = 0; // The line number
+        int edited_line = 51; // The line number look for, read and print out.
         try{
-            String line = Files.readAllLines(Paths.get("filename.txt")).get(n);
+            String line = Files.readAllLines(Paths.get("00-X00248-2.xml")).get(edited_line);
             System.out.println(line);
         }
         catch(IOException e){
             System.out.println(e);
         }
     }
-
 }

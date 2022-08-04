@@ -2,7 +2,7 @@ package com.demandbridge.single;
 
 import com.codeborne.selenide.Condition;
 import com.demandbridge.BrowserStackTest;
-import com.demandbridge.single.pages.UserReportsAllowance;
+import com.demandbridge.single.pages.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -25,7 +25,11 @@ public class AutomationReportsOne extends BrowserStackTest {
 
         // Run tests
         new UserReportsAllowance().userReportsAllowanceTest();
-
+        new UserReportsAllowanceBalance().userReportsAllowanceBalanceTest();
+        new UserReportsAllowanceReport().UserReportsAllowanceReportTest();
+        new UserReportsGiftCertificate().userReportsGiftCertificateTest();
+        new UserReportsRFQ().userReportsRFQTest();
+        new Last4Reports().last4ReportsTest();
 
 
         // Setting the status of test as 'passed' or 'failed' based on the condition; if title of the web page contains 'DB Commerce'

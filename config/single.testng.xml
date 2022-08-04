@@ -15,7 +15,7 @@
 			<!--class name="com.demandbridge.single.EQCDistributorSetup"/-->
 			<!--class name="com.demandbridge.single.MinMax"/-->
 			<!--class name="com.demandbridge.single.AutomationReports"/-->
-			<!--class name="com.demandbridge.single.AutomationReportsOne"/-->
+			<class name="com.demandbridge.single.AutomationReportsOne"/>
 		</classes>
 	</test>
 </suite>

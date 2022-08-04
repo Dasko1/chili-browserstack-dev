@@ -18,7 +18,7 @@ public class UserReportsAllowance {
         switchTo().frame("details");
         Selenide.sleep(1500);
         switchTo().window(1);
-        Selenide.sleep(5500);
+        Selenide.sleep(3500);
         $("body > div.noPrint > input[type=button]:nth-child(4)").shouldBe(Condition.visible);
         $("body > div.noPrint > input[type=button]:nth-child(5)").shouldBe(Condition.visible);
         executeJavaScript("window.open('close.html', '_self')");
