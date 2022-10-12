@@ -14,9 +14,8 @@ public class ItemRestrictionsTobyWestEQC {
     public void itemRestrictionsTobyWestEQCTest(){
 
         open("https://qnet.e-quantum2k.com/~support2/cgi-bin/nph-login.cgi?Client=&CC=&User=toby@ez.com&Passwd=password ");
-        $(By.id("eqcNavShop")).shouldBe(Condition.visible).click();                     // Click Shop link
-        $(By.className("eqd-Heading")).shouldHave(Condition.text("EZ Living"));
-        $(By.id("B1~IP")).shouldBe(Condition.visible).click();                          // Click Item Properties
+        $(By.linkText("EZ Living")).shouldBe(Condition.visible).click();                        // Click EZ Living link
+        $(By.id("B1~IP")).shouldBe(Condition.visible).click();                                  // Click Item Properties
         Selenide.switchTo().frame(0);
         $(By.id("divItem-ITEMPROP4")).shouldBe(Condition.exist);
         $(By.id("divItem-ITEMPROP4")).shouldHave(Condition.text("ITEMPROP4"));

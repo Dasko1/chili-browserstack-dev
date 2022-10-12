@@ -14,9 +14,9 @@ public class ItemRestrictionsSandraNorthEQC {
     public void itemRestrictionsSandraNorthEQCTest(){
 
         open("https://qnet.e-quantum2k.com/~support2/cgi-bin/nph-login.cgi?Client=&CC=&User=sandra@ez.com&Passwd=password ");
-        $(By.id("eqcNavShop")).shouldBe(Condition.visible).click();                     // Click Shop link
-        $(By.className("eqd-Heading")).shouldHave(Condition.text("EZ Living"));
-        $(By.id("B1~IP")).shouldBe(Condition.visible).click();                          // Click Item Properties
+        // $(By.id("eqcNavShop")).shouldBe(Condition.visible).click();                              // Click Shop link
+        $(By.linkText("EZ Living")).shouldBe(Condition.visible).click();                            // Click Item Properties
+        $(By.id("B1~IP")).shouldBe(Condition.visible).click();
         Selenide.switchTo().frame(0);
         $(By.id("divItem-ITEMCOMBO1")).shouldBe(Condition.exist);
         $(By.id("divItem-ITEMCOMBO1")).shouldHave(Condition.text("ITEMCOMBO1"));
@@ -32,10 +32,10 @@ public class ItemRestrictionsSandraNorthEQC {
         $(By.id("divItem-ITEMPROP6")).shouldHave(Condition.text("ITEMPROP6"));
         $(By.id("divItem-ITEMPROP6")).shouldHave(Condition.text("EZ Select Choice 6 - Northern Region"));
         $(By.id("divItem-ITEMPROP6")).shouldNotHave(Condition.text("Add to Cart"));
-        $(By.id("divItem-ITEMPROP8")).shouldBe(Condition.exist);
-        $(By.id("divItem-ITEMPROP8")).shouldHave(Condition.text("ITEMPROP8"));
-        $(By.id("divItem-ITEMPROP8")).shouldHave(Condition.text("EZ Select Choice 8 - Not Restricted"));
-        $(By.id("divItem-ITEMPROP8")).shouldNotHave(Condition.text("Add to Cart"));
+        $(By.id("divItem-1700-PROP8")).shouldBe(Condition.exist);
+        $(By.id("divItem-1700-PROP8")).shouldHave(Condition.text("1700-PROP8"));
+        $(By.id("divItem-1700-PROP8")).shouldHave(Condition.text("1700 - Restricted to Northern Region"));
+        $(By.id("divItem-1700-PROP8")).shouldNotHave(Condition.text("Add to Cart"));
         $(By.id("divItem-ITEMPROPE")).shouldBe(Condition.exist);
         $(By.id("divItem-ITEMPROPE")).shouldHave(Condition.text("ITEMPROPE"));
         $(By.id("divItem-ITEMPROPE")).shouldHave(Condition.text("EZ Baby Ruth Northern Region"));

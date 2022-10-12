@@ -7,10 +7,12 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.Test;
 
 import java.awt.*;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.time.Duration;
 
 public class ChiliBusCard {
 
@@ -19,7 +21,8 @@ public class ChiliBusCard {
     public static final String AUTOMATE_ACCESS_KEY = "swze39oMCvW69Gsgh8qA";
     public static final String URL = "https://" + AUTOMATE_USERNAME + ":" + AUTOMATE_ACCESS_KEY + "@hub-cloud.browserstack.com/wd/hub";
 
-    public static void main(String[] args) throws MalformedURLException, AWTException {
+    @Test
+    public void chiliBusCard_Test() throws MalformedURLException, AWTException {
 
         DesiredCapabilities caps = new DesiredCapabilities();
         caps.setCapability("os_version", "10");
@@ -101,9 +104,6 @@ public class ChiliBusCard {
         cardBackDropdown.clear();
         cardBackDropdown.sendKeys("let us bring you home");
         cardBackDropdown.sendKeys(Keys.RETURN);
-        // cardBackDropdown.click();
-        // WebElement choice = driver.findElement(By.xpath("//*[@id=\"ext-gen78\"]/div[2]"));
-        // choice.click();
         robot.delay(1000);
 
         // Hover over infoprint/tooltips
@@ -197,7 +197,7 @@ public class ChiliBusCard {
         robot.delay(5000);
 
         // Setting the status of test as 'passed' or 'failed' based on the condition; if title of the web page contains 'DB Commerce'
-        WebDriverWait wait = new WebDriverWait(driver, 10);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         try {
             wait.until(ExpectedConditions.urlContains("CheckoutV2"));
             markTestStatus("passed","Yaay, the URL contains 'CheckoutV2'!",driver);

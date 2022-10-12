@@ -17,7 +17,7 @@ public class ItemRestrictionsTobyWest {
         // Go to EZ Living Catalog. Select Category - Item Properties.
         $(By.linkText("EZ Living")).shouldBe(Condition.visible).click();
         Selenide.sleep(5000);
-        $(By.linkText("Item Properties (5)")).shouldBe(Condition.visible).click();
+        $(By.id("B1~IP")).shouldBe(Condition.visible).click();
         Selenide.switchTo().frame(0);
         $(By.id("divItem-ITEMPROP4")).shouldBe(Condition.exist);
         $(By.id("divItem-ITEMPROP4")).shouldHave(Condition.text("ITEMPROP4"));

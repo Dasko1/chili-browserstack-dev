@@ -17,7 +17,7 @@ public class ItemRestrictionsSandraNorth {
         // Go to EZ Living Catalog. Select Category - Item Properties.
         $(By.linkText("EZ Living")).shouldBe(Condition.visible).click();
         Selenide.sleep(5000);
-        $(By.linkText("Item Properties (8)")).shouldBe(Condition.visible).click();
+        $(By.id("B1~IP")).shouldBe(Condition.visible).click();
         Selenide.switchTo().frame(0);
         $(By.id("divItem-ITEMCOMBO1")).shouldBe(Condition.exist);
         $(By.id("divItem-ITEMCOMBO1")).shouldHave(Condition.text("ITEMCOMBO1"));
@@ -35,11 +35,6 @@ public class ItemRestrictionsSandraNorth {
         $(By.id("divItem-ITEMPROP6")).shouldHave(Condition.text("EZ Select Choice 6 - Northern Region"));
         $(By.id("divItem-ITEMPROP6")).shouldNotHave(Condition.text("Add to Cart"));
         $(By.id("divItem-ITEMPROP6")).shouldHave(Condition.text("Show Details"));
-        $(By.id("divItem-ITEMPROP8")).shouldBe(Condition.exist);
-        $(By.id("divItem-ITEMPROP8")).shouldHave(Condition.text("ITEMPROP8"));
-        $(By.id("divItem-ITEMPROP8")).shouldHave(Condition.text("EZ Select Choice 8 - Not Restricted"));
-        $(By.id("divItem-ITEMPROP8")).shouldNotHave(Condition.text("Add to Cart"));
-        $(By.id("divItem-ITEMPROP8")).shouldHave(Condition.text("Show Details"));
         $(By.id("divItem-ITEMPROPE")).shouldBe(Condition.exist);
         $(By.id("divItem-ITEMPROPE")).shouldHave(Condition.text("ITEMPROPE"));
         $(By.id("divItem-ITEMPROPE")).shouldHave(Condition.text("EZ Baby Ruth Northern Region"));

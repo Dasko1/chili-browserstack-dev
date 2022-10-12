@@ -6,7 +6,7 @@
   "capabilities": {
     "project": "EQ",
     "build": "EQ Tests",
-    "name": "Automation Reports - DEV",
+    "name": "EQ Automation Reports - DEV",
     "browserstack.debug": true
   },
 

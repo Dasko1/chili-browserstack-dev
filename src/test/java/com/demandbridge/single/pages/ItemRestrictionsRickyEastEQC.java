@@ -14,24 +14,22 @@ public class ItemRestrictionsRickyEastEQC {
     public void itemRestrictionsRickyEastEQCTest(){
 
         open("https://qnet.e-quantum2k.com/~support2/cgi-bin/nph-login.cgi?Client=&CC=&User=ricky@ez.com&Passwd=password");
-        $(By.id("eqcNavShop")).shouldBe(Condition.visible).click();                     // Click Shop link
-        $(By.className("eqd-Heading")).shouldHave(Condition.text(""));
-        $(By.id("B1~IP")).shouldBe(Condition.visible).click();                          // Click Item Properties
+        $(By.linkText("EZ Living")).shouldBe(Condition.visible).click();                     // Click Shop link
+        $(By.id("B1~IP")).shouldBe(Condition.visible).click();                              // Click Item Properties
         Selenide.switchTo().frame(0);
         $(By.id("divItem-ITEMPROP3")).shouldHave(Condition.text("ITEMPROP3"));
         $(By.id("divItem-ITEMPROP3")).shouldHave(Condition.text("EZ Select Choice 3"));
         $(By.id("imgPic-ITEMPROP3")).shouldBe(Condition.image);
         // Next frame, I think, or I found what to look for on the page!
-        $(By.id("divItem-ITEMPROP8")).shouldBe(Condition.exist);
-        $(By.id("divItem-ITEMPROP8")).shouldHave(Condition.text("ITEMPROP8"));
-        $(By.id("divItem-ITEMPROP8")).shouldHave(Condition.text("EZ Select Choice 8 - Not Restricted\n"));
+        $(By.id("divItem-1700-PROP4")).shouldBe(Condition.exist);
+        $(By.id("divItem-1700-PROP4")).shouldHave(Condition.text("1700 - Restricted to Eastern Region"));
         $(By.id("divItem-ITEMPROPB")).shouldBe(Condition.exist);
         $(By.id("divItem-ITEMPROPB")).shouldHave(Condition.text("ITEMPROPB"));
         $(By.id("divItem-ITEMPROPB")).shouldHave(Condition.text("$0.75 / EA"));
         $(By.id("divItem-ITEMPROPB")).shouldHave(Condition.text("EZ Heath Eastern Region"));
         $(By.id("divItem-ITEMPROPD")).shouldBe(Condition.exist);
         $(By.id("divItem-ITEMPROPD")).shouldHave(Condition.text("ITEMPROPD"));
-        $(By.id("divItem-ITEMPROPD")).shouldHave(Condition.text("$0.65 / EA"));
+        $(By.id("divItem-ITEMPROPD")).shouldHave(Condition.text("$0.75 / EA"));
         $(By.id("divItem-ITEMPROPD")).shouldHave(Condition.text("EZ Twix Eastern Region"));
         $(By.id("divItem-ITEMPROPJ")).shouldBe(Condition.exist);
         $(By.id("divItem-ITEMPROPJ")).shouldHave(Condition.text("ITEMPROPJ"));

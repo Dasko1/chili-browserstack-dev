@@ -17,7 +17,7 @@ public class FileDownload_2 {
         public static final String AUTOMATE_KEY = "RwofYrpjLEBwrwzpTdSc";
         public static final String URL = "https://" + AUTOMATE_USERNAME + ":" + AUTOMATE_KEY + "@hub-cloud.browserstack.com/wd/hub";
 
-        public static void main (String[]args) throws Exception {
+        public static void main(String[] args) throws Exception {
         FirefoxProfile profile = new FirefoxProfile();
         profile.setPreference("browser.download.folderList", 1);
         profile.setPreference("browser.download.manager.showWhenStarting", false);
@@ -61,5 +61,8 @@ public class FileDownload_2 {
         System.out.println(jse.executeScript("browserstack_executor: {\"action\": \"fileExists\", \"arguments\": {\"fileName\": \"BrowserStack - List of devices to test on.csv\"}}"));
 
         driver.quit();
+        }
+
+        public static void main() {
         }
 }

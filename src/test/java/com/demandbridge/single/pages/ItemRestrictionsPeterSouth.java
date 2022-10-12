@@ -17,14 +17,8 @@ public class ItemRestrictionsPeterSouth {
         // Go to EZ Living Catalog. Select Category - Item Properties.
         $(By.linkText("EZ Living")).shouldBe(Condition.visible).click();
         Selenide.sleep(5000);
-        $(By.linkText("Item Properties (5)")).shouldBe(Condition.visible).click();
+        $(By.id("B1~IP")).shouldBe(Condition.visible).click();
         Selenide.switchTo().frame(0);
-        $(By.id("divItem-ITEMPROP1")).shouldBe(Condition.exist);
-        $(By.id("divItem-ITEMPROP1")).shouldHave(Condition.text("ITEMPROP1"));
-        $(By.id("divItem-ITEMPROP1")).shouldHave(Condition.text("EZ Select Choice 1 - Southern Region"));
-        $(By.id("divItem-ITEMPROP8")).shouldBe(Condition.exist);
-        $(By.id("divItem-ITEMPROP8")).shouldHave(Condition.text("ITEMPROP8"));
-        $(By.id("divItem-ITEMPROP8")).shouldHave(Condition.text("EZ Select Choice 8 - Not Restricted"));
         $(By.id("divItem-ITEMPROPA")).shouldBe(Condition.exist);
         $(By.id("divItem-ITEMPROPA")).shouldHave(Condition.text("ITEMPROPA"));
         $(By.id("divItem-ITEMPROPA")).shouldHave(Condition.text("EZ Butterfinger -Southern Region wt .25/ex frt .15"));

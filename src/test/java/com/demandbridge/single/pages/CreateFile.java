@@ -11,7 +11,8 @@ public class CreateFile {
             File myObj = new File("filename.txt");
             if (myObj.createNewFile()) {
                 System.out.println("File created: " + myObj.getName());
-            } else {
+            }
+            else {
                 System.out.println("File already exists.");
             }
         }
@@ -19,6 +20,5 @@ public class CreateFile {
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
-
     }
 }

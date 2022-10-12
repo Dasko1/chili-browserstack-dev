@@ -10,6 +10,12 @@ import static com.codeborne.selenide.Selenide.open;
 
 public class MailosaurCheck extends BrowserStackTest {
 
+    // Run in BrowserStack Dashboard
+    public static final String AUTOMATE_USERNAME = "anastasiosdaskal1";
+    public static final String AUTOMATE_ACCESS_KEY = "swze39oMCvW69Gsgh8qA";
+    public static final String URL = "https://" + AUTOMATE_USERNAME + ":" + AUTOMATE_ACCESS_KEY + "@hub-cloud.browserstack.com/wd/hub";
+
+
     public void mailosaurCheckTest() {
 
         // Go to Mailosaur enter username/password & push Continue & Login buttons
@@ -17,7 +23,7 @@ public class MailosaurCheck extends BrowserStackTest {
         $(By.name("email")).shouldBe(Condition.visible).sendKeys("amallah@demandbridge.com");
         $("#root > div > div > div > div > div.mBox-root.css-v76q14 > form > button > div").click();
         $(By.name("password")).shouldBe(Condition.visible).sendKeys("d3m4ndbr1dg32017!");
-        $("#root > div > div > div > div > div.mBox-root.css-v76q14 > form > button.mLoadingButton-root.mButton-root.mButton-contained.mButton-containedPrimary.mButton-sizeMedium.mButton-containedSizeMedium.mButton-disableElevation.mButton-fullWidth.mButtonBase-root.css-1s3uy45").click();
+        $(By.xpath("//*[@id=\"root\"]/div/div/div/div/div[2]/form/button[1]/div")).shouldBe(Condition.visible).click();
         Selenide.sleep(7500);
 
         // Assert MODIFIED and click on topmost email
@@ -25,8 +31,9 @@ public class MailosaurCheck extends BrowserStackTest {
         Selenide.sleep(5500);
         $(By.xpath("//*[@id=\"root\"]/div/div/div/div[2]/div[4]/div[2]/div[1]/div[3]")).click();
         Selenide.sleep(1500);
-        // Confirm "_lowres.pdf"
+        // Confirm "MODIFIED" & "_lowres.pdf"
         $(By.xpath("//*[@id=\"root\"]/div/div/div/div[2]/div[3]")).shouldBe(Condition.text("_lowres.pdf"));
-        Selenide.sleep(5500);
+        Selenide.sleep(1500);
+        $(By.xpath("//*[@id=\"root\"]/div/div/div/div[2]/div[1]/div[1]/div[1]/div[2]")).shouldHave(Condition.text("MODIFIED"));
     }
 }
