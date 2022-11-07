@@ -105,6 +105,10 @@ public class ChiliBusCard {
         cardBackDropdown.sendKeys("let us bring you home");
         cardBackDropdown.sendKeys(Keys.RETURN);
         robot.delay(1000);
+        cardBackDropdown.clear();
+        cardBackDropdown.sendKeys("promises made... promises kept");
+        cardBackDropdown.sendKeys(Keys.RETURN);
+        robot.delay(1000);
 
         // Hover over infoprint/tooltips
         Actions act = new Actions(driver);

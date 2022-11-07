@@ -65,6 +65,14 @@ public class FileUpload_1 {
         WebElement customize_btn = driver.findElement(By.id("customizebutton_btn"));
         customize_btn.click();
 
+        // Clear & enter text from the Message field.
+        WebElement message_field = driver.findElement(By.name("message"));
+        message_field.clear();
+        Selenide.sleep(1500);
+        message_field.sendKeys("What better time to celebrate family and friends than the holidays! " +
+                "Join our celebration with delicious food and entertainment in a home that really sparkles. " +
+                "You'll see first-hand why generic can recommend a great place to celebrate this holiday... and every day!");
+
         // Upload Attachments; step 1: push Approve button and then remove attachment
         Selenide.sleep(17000);
         WebElement view_proof = driver.findElement(By.id("chili-customize-view-proof-button"));

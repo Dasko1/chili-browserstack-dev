@@ -1,10 +1,7 @@
 package com.demandbridge.single;
 
 import org.junit.jupiter.api.Assertions;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -86,12 +83,12 @@ public class ChiliApprovalsAsIs {
         attention_field.sendKeys("The Receiver");
         emp_number.sendKeys("1235");
         phone_number.sendKeys("800-448-1484");
-        // Select delivery_options = new Select(driver.findElement(By.id("shipping_delivery_options_cbo")));
         delivery_options.click();
-        WebElement next_day_air = driver.findElement(By.xpath("//*[@id=\"ext-gen25\"]/div[3]"));
-        robot.delay(1500);
-        next_day_air.click();
-        robot.delay(7000);
+        robot.delay(1000);
+        delivery_options.sendKeys(Keys.ARROW_DOWN);
+        delivery_options.sendKeys(Keys.ARROW_DOWN);
+        delivery_options.sendKeys(Keys.ENTER);
+        robot.delay(8000);                                                      // Wait for Place This Order Now button to activate
         email.sendKeys("ad@qgowwpz9.mailosaur.net");
         field_1.sendKeys("Field One");
         field_2.sendKeys("Field Two");
