@@ -6,7 +6,12 @@
 		<parameter name="environment" value="chrome"/>
 		<classes>
 			<class name="com.demandbridge.single.ChiliBusCard"></class>
-			<!--class name="com.demandbridge.single.lookbook"></class-->
+			<!--class name="com.demandbridge.single.lookBook"></class>
+			<class name="com.demandbridge.single.menu"></class>
+			<class name="com.demandbridge.single.advert"></class>
+			<class name="com.demandbridge.single.ChiliApprovalsAsIs"></class>
+			<class name="com.demandbridge.single.ChiliApprovalsEdit"></class-->
+			<!--class name="com.demandbridge.single.ChiliApprovals"></class-->
 		</classes>
 	</test>
 </suite>
