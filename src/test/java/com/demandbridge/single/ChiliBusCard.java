@@ -1,5 +1,6 @@
 package com.demandbridge.single;
 
+import com.codeborne.selenide.Selenide;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
@@ -13,6 +14,7 @@ import java.awt.*;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.Duration;
+import java.util.concurrent.TimeUnit;
 
 public class ChiliBusCard {
 
@@ -48,39 +50,39 @@ public class ChiliBusCard {
         System.out.println(driver.getTitle());
 
         // Click the Shop link
-        robot.delay(1500);
+        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
         Assertions.assertTrue(driver.getTitle().contentEquals("DB Commerce"));
         WebElement shopLink = driver.findElement(By.linkText("SHOP"));
         shopLink.click();
-        robot.delay(2000);
+        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
 
         // Click Corporate Collateral to get to Business Cards
         WebElement corpColl = driver.findElement(By.linkText("Corporate Collateral"));
         Assertions.assertTrue(corpColl.isDisplayed());
         corpColl.click();
-        robot.delay(5000);
+        driver.manage().timeouts().implicitlyWait(4, TimeUnit.SECONDS);
         WebElement busCards = driver.findElement(By.linkText("Business Cards"));
         Assertions.assertTrue(busCards.isDisplayed());
         busCards.click();
-        robot.delay(5000);
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         Assertions.assertEquals("Business Cards", "Business Cards");
         // Push the Customize button. First, select 4 from the dropdown to avoid warning.
         WebElement customizeDrpdn = driver.findElement(By.id("order-qty_cbo"));
         customizeDrpdn.click();
-        robot.delay(2000);
+        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
         WebElement two = driver.findElement(By.cssSelector("div.x-combo-list-item:nth-child(2)"));
         two.click();
         Actions keyDown = new Actions(driver);
         keyDown.sendKeys(Keys.chord(Keys.DOWN)).perform();
-        robot.delay(2000);
+        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
         customizeDrpdn.click();
         WebElement four = driver.findElement(By.cssSelector("div.x-combo-list-item:nth-child(3)"));
         four.click();
         keyDown.sendKeys(Keys.chord(Keys.DOWN)).perform();
-        robot.delay(2000);
+        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
         WebElement customizeBtn = driver.findElement(By.id("customizebutton_btn"));
         customizeBtn.click();
-        robot.delay(17000);
+        driver.manage().timeouts().implicitlyWait(17, TimeUnit.SECONDS);
         Assertions.assertEquals("Name", "Name");
         Assertions.assertEquals("Email", "Email");
         Assertions.assertEquals("Title", "Title");
@@ -99,57 +101,57 @@ public class ChiliBusCard {
         emailField.sendKeys("mschwartz");
         WebElement cardBackField = driver.findElement(By.name("Back"));
         Assertions.assertTrue(cardBackField.isDisplayed());
-        robot.delay(1000);
+        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
         WebElement cardBackDropdown = driver.findElement(By.name("Back"));
         cardBackDropdown.clear();
         cardBackDropdown.sendKeys("let us bring you home");
         cardBackDropdown.sendKeys(Keys.RETURN);
-        robot.delay(1000);
+        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
         cardBackDropdown.clear();
         cardBackDropdown.sendKeys("promises made... promises kept");
         cardBackDropdown.sendKeys(Keys.RETURN);
-        robot.delay(1000);
+        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
 
         // Hover over infoprint/tooltips
         Actions act = new Actions(driver);
         WebElement email_help = driver.findElement(By.id("chili-help-icon"));
         act.moveToElement(email_help).perform();
         Assertions.assertEquals("Enter username only", "Enter username only");
-        robot.delay(2500);
+        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 
         // Visual test to go here to confirm information saved to business cards
 
         // Profile: Add
-        robot.delay(1000);
+        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
         WebElement add_a_profile = driver.findElement(By.id("chili_customize_add_profile_button"));
         add_a_profile.click();
         WebElement cancel_profile = driver.findElement(By.xpath("//*[@id=\"chili_new_profile_name_wrapper\"]/div[1]/a[2]"));
         cancel_profile.click();
-        robot.delay(1000);
+        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
         add_a_profile.click();
         WebElement new_profile = driver.findElement(By.id("chili_new_profile_name"));
         new_profile.click();
         new_profile.sendKeys("Auto Test Profile");
-        robot.delay(1500);
+        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
         WebElement save_profile_btn = driver.findElement(By.xpath("//*[@id=\"chili_new_profile_name_wrapper\"]/div[1]/a[1]"));
         save_profile_btn.click();
-        robot.delay(5000);
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         // Check for new profile
-        robot.delay(3000);
+        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
         WebElement show_profiles = driver.findElement(By.name("profileCombo"));
         show_profiles.click();
         Assertions.assertEquals("Auto Test Profile", "Auto Test Profile");
         // Delete Profile
-        robot.delay(1500);
+        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
         WebElement delete_profile = driver.findElement(By.id("chili-delete-profile-icon"));
         delete_profile.click();
-        robot.delay(500);
+        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
         show_profiles.click();
         Assertions.assertNotEquals("Auto Test Profile", "");
         // Change Profile
-        robot.delay(1000);
+        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
         // show_profiles.click();
-        robot.delay(1500);
+        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
         // Open Profile
         show_profiles.sendKeys(Keys.DOWN);
         show_profiles.sendKeys(Keys.DOWN);
@@ -159,31 +161,31 @@ public class ChiliBusCard {
         // Push the VIEW PROOF button
         WebElement viewProofButton = driver.findElement(By.id("chili-view-proof-text"));
         viewProofButton.click();
-        robot.delay(2000);
+        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
         WebElement approveAdd2Cart = driver.findElement(By.id("chili-step2a-text"));
         WebElement approveCheckout = driver.findElement(By.id("chili-step2b-text"));
         Assertions.assertTrue(approveCheckout.isEnabled());
         Assertions.assertTrue(approveAdd2Cart.isEnabled());
 
         // Push Approve & Add To Cart button; push VIEW PROOF button
-        robot.delay(3000);
+        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
         approveAdd2Cart.click();
-        robot.delay(12000);
+        driver.manage().timeouts().implicitlyWait(12, TimeUnit.SECONDS);
         viewProofButton.click();
-        robot.delay(8000);
+        driver.manage().timeouts().implicitlyWait(8, TimeUnit.SECONDS);
 
         //Edit from Cart; click Approve and Checkout;
         viewProofButton.click();
-        robot.delay(8000);
+        driver.manage().timeouts().implicitlyWait(8, TimeUnit.SECONDS);
         Assertions.assertTrue(approveCheckout.isEnabled());
-        robot.delay(8000);
+        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
         approveCheckout.click();
         Assertions.assertEquals("Shopping Cart", "Shopping Cart");
-        robot.delay(25000);
+        Selenide.sleep(15000);
         // Click Edit link on the top.
         WebElement edit_link = driver.findElement(By.linkText("Edit"));
         edit_link.click();
-        robot.delay(15000);
+        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
         Assertions.assertEquals("COR001 - Business Cards", "COR001 - Business Cards");
         WebElement edit_phone = driver.findElement(By.id("value-Phone"));
         edit_phone.clear();
@@ -191,20 +193,20 @@ public class ChiliBusCard {
         WebElement save_btn = driver.findElement(By.id("chili-customize-save-button"));
         save_btn.click();
         // Push View Proof and then Return to check out buttons
-        robot.delay(5000);
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         WebElement viewProofButton2 = driver.findElement(By.id("chili-customize-view-proof-button"));
         viewProofButton2.click();
-        robot.delay(5000);
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         WebElement return_to_checkout_btn = driver.findElement(By.id("chili-step2a-text"));
         return_to_checkout_btn.click();
         Assertions.assertEquals("Shopping Cart", "Shopping Cart");
-        robot.delay(5000);
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 
         // Setting the status of test as 'passed' or 'failed' based on the condition; if title of the web page contains 'DB Commerce'
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         try {
             wait.until(ExpectedConditions.urlContains("CheckoutV2"));
-            markTestStatus("passed","Yaay, the URL contains 'CheckoutV2'!",driver);
+            markTestStatus("passed","Yaay, the Business Card test passed'!",driver);
         }
         catch(Exception e) {
             markTestStatus("failed","Title does not contain 'CheckoutV2'!",driver);
