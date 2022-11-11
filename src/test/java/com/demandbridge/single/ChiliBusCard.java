@@ -53,7 +53,7 @@ public class ChiliBusCard {
         shopLink.click();
         Selenide.sleep(2000);
 
-        // Click Corporate Collateral to get to Business Cards
+        // Click Corporate Collateral to get to Business Cards.
         WebElement corpColl = driver.findElement(By.linkText("Corporate Collateral"));
         Assertions.assertTrue(corpColl.isDisplayed());
         corpColl.click();
