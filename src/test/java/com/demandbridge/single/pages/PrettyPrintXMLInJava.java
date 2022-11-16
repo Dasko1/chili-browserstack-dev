@@ -22,7 +22,7 @@ public class PrettyPrintXMLInJava {
         dbf.setValidating(false);
         DocumentBuilder db = dbf.newDocumentBuilder();
 
-        Document doc = db.parse(new FileInputStream("C:\\Users\\ADaskalopoulos\\Downloads\\00-X0040C-1.xml"));
+        Document doc = db.parse(new FileInputStream("C:\\Users\\ADaskalopoulos\\Downloads\\00-X0049J-1.xml"));
         prettyPrint(doc);
     }
 
@@ -34,7 +34,7 @@ public class PrettyPrintXMLInJava {
         tf.transform(new DOMSource(xml), new StreamResult(out));
         System.out.println(out);
 
-        FileWriter myWriter = new FileWriter("C:\\Users\\ADaskalopoulos\\Downloads\\00-X0040C-1.xml");
+        FileWriter myWriter = new FileWriter("C:\\Users\\ADaskalopoulos\\Downloads\\00-X0049J-1.xml");
         myWriter.write(String.valueOf(out));
         myWriter.close();
         System.out.println("Successfully wrote to the file.");

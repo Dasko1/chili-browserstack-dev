@@ -1,5 +1,6 @@
 package com.demandbridge.single;
 
+import com.codeborne.selenide.Selenide;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
@@ -9,9 +10,10 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 
-import java.awt.*;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.time.Duration;
+import java.util.concurrent.TimeUnit;
 
 public class ChiliApprovalsAsIs {
 
@@ -21,7 +23,7 @@ public class ChiliApprovalsAsIs {
     public static final String URL = "https://" + AUTOMATE_USERNAME + ":" + AUTOMATE_ACCESS_KEY + "@hub-cloud.browserstack.com/wd/hub";
 
     @Test
-    public void chiliApprovalsAsIs_Test() throws MalformedURLException, AWTException {
+    public void chiliApprovalsAsIs_Test() throws MalformedURLException {
 
         DesiredCapabilities caps = new DesiredCapabilities();
         caps.setCapability("os_version", "10");
@@ -30,12 +32,11 @@ public class ChiliApprovalsAsIs {
         caps.setCapability("browser_version", "latest");
         caps.setCapability("os", "Windows");
         caps.setCapability("name", "ChiliApprovals As Is"); // test name
-        caps.setCapability("build", "ChiliApprovals As Is 1"); // CI/CD job or build name
+        caps.setCapability("build", "ChiliApprovals As Is "); // CI/CD job or build name
 
         // Go to Generic page and login
         WebDriver driver = new RemoteWebDriver(new URL(URL), caps);
         driver.get("https://generic.development.dbenterprise.com/");
-        Robot robot = new Robot();
         driver.manage().window().maximize();
         Actions actions = new Actions(driver);
         WebElement usernameField = driver.findElement(By.name("username"));
@@ -48,7 +49,7 @@ public class ChiliApprovalsAsIs {
         System.out.println(driver.getTitle());
 
         // Assert page title and click Cart button
-        robot.delay(3500);
+        driver.manage().timeouts().implicitlyWait(4, TimeUnit.SECONDS);
         WebElement shopping_cart_count = driver.findElement(By.id("shopping-cart-item-count"));
         Assertions.assertTrue(driver.getTitle().contentEquals("DB Commerce"));
         WebElement checkout_btn = driver.findElement(By.id("checkout-button"));
@@ -61,7 +62,7 @@ public class ChiliApprovalsAsIs {
         checkout_btn.click();
 
         // Shopping Cart
-        robot.delay(12000);
+        driver.manage().timeouts().implicitlyWait(12, TimeUnit.SECONDS);
         WebElement update_quant_btn = driver.findElement(By.id("checkout_update_quantities_button"));
         Assertions.assertTrue(update_quant_btn.isDisplayed());
         // Enter values into Employee ID Number fields.
@@ -77,6 +78,7 @@ public class ChiliApprovalsAsIs {
         WebElement email = driver.findElement(By.id("billing_email"));
         WebElement field_1 = driver.findElement(By.id("billing_misc1"));
         WebElement field_2 = driver.findElement(By.id("billing_misc2"));
+        WebElement field_3 = driver.findElement(By.id("billing_misc3"));
         WebElement delivery_options = driver.findElement(By.id("shipping_delivery_options_cbo"));
         actions.moveToElement(attention_field);
         Assertions.assertTrue(attention_field.isDisplayed());
@@ -84,24 +86,34 @@ public class ChiliApprovalsAsIs {
         emp_number.sendKeys("1235");
         phone_number.sendKeys("800-448-1484");
         delivery_options.click();
-        robot.delay(1000);
+        driver.manage().timeouts().implicitlyWait(7, TimeUnit.SECONDS);
         delivery_options.sendKeys(Keys.ARROW_DOWN);
         delivery_options.sendKeys(Keys.ARROW_DOWN);
         delivery_options.sendKeys(Keys.ENTER);
-        robot.delay(8000);                                                      // Wait for Place This Order Now button to activate
+
+        // Wait for Place This Order Now button to activate
         email.sendKeys("ad@qgowwpz9.mailosaur.net");
         field_1.sendKeys("Field One");
         field_2.sendKeys("Field Two");
-        robot.delay(5500);
-        WebElement place_order_now_btn = driver.findElement(By.id("checkout_place_order_button"));
+        field_3.sendKeys(Keys.ENTER);
+        Selenide.sleep(7000);
+
+        email.sendKeys("ad@qgowwpz9.mailosaur.net");
+        field_1.sendKeys("Field One");
+        field_2.sendKeys("Field Two");
+        field_3.sendKeys(Keys.ENTER);
+
+        WebElement place_order_now_btn = new WebDriverWait(driver, Duration.ofSeconds(30))
+                .until(ExpectedConditions.elementToBeClickable(By.id("checkout_place_order_button")));
+
         place_order_now_btn.click();
-        robot.delay(17000);
+        Selenide.sleep(8000);
 
         // Final Confirmation Of Your Order modal: find Approval notifications
         WebElement final_checkout_btn = driver.findElement(By.id("final_place_order_button"));
         Assertions.assertTrue(final_checkout_btn.isEnabled());
         final_checkout_btn.click();
-        robot.delay(12000);
+        Selenide.sleep(7000);
 //        WebElement following_reasons = driver.findElement(By.cssSelector("\"#ext-gen64 > div > table > tbody > tr:nth-child(2) > td > div > span"));
 //        WebElement next_day_air_text = driver.findElement(By.xpath("//*[@id=\"ext-gen64\"]/div/table/tbody/tr[2]/td/div/span/ul/li[2]"));
 //        Assertions.assertTrue(following_reasons.isDisplayed());
@@ -110,13 +122,13 @@ public class ChiliApprovalsAsIs {
         // Click Approvals link
         WebElement approvals_link = driver.findElement(By.id("nhl_250"));
         approvals_link.click();
-        robot.delay(8000);
+        Selenide.sleep(8000);
         WebElement order_4_approval = driver.findElement(By.xpath("/html/body/table/tbody/tr[3]/td[2]/div[2]/div/div/div[1]/table/tbody/tr[2]/td[1]/a"));
         order_4_approval.click();
-        robot.delay(7000);
+        Selenide.sleep(8000);
         WebElement approve_btn = driver.findElement(By.name("approveButton"));                  // Push Approve button
         approve_btn.click();
-        robot.delay(5500);
+        driver.manage().timeouts().implicitlyWait(6, TimeUnit.SECONDS);
         WebElement confirm_btn = driver.findElement(By.name("confirmButton"));                  // Push Confirm button in modal
         confirm_btn.click();
         Assertions.assertEquals("The order has been approved.", "The order has been approved.");

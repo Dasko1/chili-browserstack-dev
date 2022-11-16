@@ -10,7 +10,7 @@ public class FileRead {
     public static void main() {
         int edited_line = 51; // The line number look for, read and print out.
         try{
-            String line = Files.readAllLines(Paths.get("C:\\Users\\ADaskalopoulos\\Downloads\\00-X0040C-1.xml")).get(edited_line);
+            String line = Files.readAllLines(Paths.get("C:\\Users\\ADaskalopoulos\\Downloads\\00-X0049J-1.xml")).get(edited_line);
             System.out.println(line);
         }
         catch(IOException e){

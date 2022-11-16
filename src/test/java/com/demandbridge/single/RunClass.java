@@ -1,6 +1,5 @@
 package com.demandbridge.single;
 
-import com.demandbridge.single.pages.MailosaurCheck;
 import com.jcraft.jsch.JSchException;
 import com.jcraft.jsch.SftpException;
 import org.testng.annotations.Test;
@@ -15,12 +14,12 @@ public class RunClass {
     @Test
     public void runClassTest() throws InterruptedException, JSchException, SftpException {
 
-        new MailosaurCheck().mailosaurCheckTest();
+        // new MailosaurCheck().mailosaurCheckTest();
         // FTPDownloadDemo.main();
         // CreateFile.main();
         // WriteToFile.main();
+
         // FileRead.main();
-        //
         // SFTPClient.main();
         // SFTPClientDB.main();
         // FileDownload_1.main("C:\\Users\\ADaskalopoulos\\Downloads\\00-X0040C-1.xml");

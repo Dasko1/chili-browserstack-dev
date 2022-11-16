@@ -1,19 +1,17 @@
 package com.demandbridge.single;
 
 import org.junit.jupiter.api.Assertions;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.Test;
 
-import java.awt.*;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.concurrent.TimeUnit;
 
 public class ChiliApprovals {
 
@@ -22,7 +20,8 @@ public class ChiliApprovals {
     public static final String AUTOMATE_ACCESS_KEY = "swze39oMCvW69Gsgh8qA";
     public static final String URL = "https://" + AUTOMATE_USERNAME + ":" + AUTOMATE_ACCESS_KEY + "@hub-cloud.browserstack.com/wd/hub";
 
-    public static void main(String[] args) throws MalformedURLException, AWTException{
+    @Test
+    public void chiliApprovals_Test() throws MalformedURLException {
 
         DesiredCapabilities caps = new DesiredCapabilities();
         caps.setCapability("os_version", "10");
@@ -36,7 +35,6 @@ public class ChiliApprovals {
         // Go to Generic page and login
         WebDriver driver = new RemoteWebDriver(new URL(URL), caps);
         driver.get("https://generic.development.dbenterprise.com/");
-        Robot robot = new Robot();
         driver.manage().window().maximize();
         Actions actions = new Actions(driver);
         WebElement usernameField = driver.findElement(By.name("username"));
@@ -49,7 +47,7 @@ public class ChiliApprovals {
         System.out.println(driver.getTitle());
 
         // Assert page title and click Cart button
-        robot.delay(3500);
+        driver.manage().timeouts().implicitlyWait(4, TimeUnit.SECONDS);
         WebElement shopping_cart_count = driver.findElement(By.id("shopping-cart-item-count"));
         Assertions.assertTrue(driver.getTitle().contentEquals("DB Commerce"));
         WebElement checkout_btn = driver.findElement(By.id("checkout-button"));
@@ -62,14 +60,14 @@ public class ChiliApprovals {
         checkout_btn.click();
 
         // Shopping Cart
-        robot.delay(7500);
+        driver.manage().timeouts().implicitlyWait(8, TimeUnit.SECONDS);
         WebElement update_quant_btn = driver.findElement(By.id("checkout_update_quantities_button"));
         Assertions.assertTrue(update_quant_btn.isDisplayed());
         // Enter values into Employee ID Number fields.
-        WebElement top_emp_id = driver.findElement(By.id("288897363_lii"));
+        /* WebElement top_emp_id = driver.findElement(By.id("288897363_lii"));
         WebElement bot_emp_id = driver.findElement(By.id("288897364_lii"));
         top_emp_id.sendKeys("1235");
-        bot_emp_id.sendKeys("1236");
+        bot_emp_id.sendKeys("1236");*/
 
         // Shipping Location/Billing Required Fields: set Deliver Options to Next Day Air; push Place This Order Now button l.96
         WebElement attention_field = driver.findElement(By.id("shipping_attention"));
@@ -86,26 +84,30 @@ public class ChiliApprovals {
         emp_number.sendKeys("1235");
         phone_number.sendKeys("800-448-1484");
         // Select delivery_options = new Select(driver.findElement(By.id("shipping_delivery_options_cbo")));
-        delivery_options.click();
-        WebElement next_day_air = driver.findElement(By.xpath("//*[@id=\"ext-gen25\"]/div[3]"));
-        robot.delay(1500);
-        next_day_air.click();
-        robot.delay(7000);
+        //delivery_options.click();
+        delivery_options.sendKeys(Keys.ARROW_DOWN);
+        delivery_options.sendKeys(Keys.ARROW_DOWN);
+        delivery_options.sendKeys(Keys.ENTER);
+
+        // WebElement next_day_air = driver.findElement(By.xpath("//*[@id=\"ext-gen25\"]/div[3]"));
+        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+        //next_day_air.click();
+        driver.manage().timeouts().implicitlyWait(8, TimeUnit.SECONDS);
         email.sendKeys("ad@qgowwpz9.mailosaur.net");
         field_1.sendKeys("Field One");
         field_2.sendKeys("Field Two");
         field_3.click();
-        // robot.delay(1500);
+        // driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);delay(1500);
         WebElement place_order_now_btn = driver.findElement(By.id("checkout_place_order_button"));
         place_order_now_btn.click();
-        robot.delay(12000);
+        driver.manage().timeouts().implicitlyWait(12, TimeUnit.SECONDS);
 
         // Final Confirmation Of Your Order modal: find Approval notifications
         WebElement final_conf_modal = driver.findElement(By.className("checkoutFinalConfirmation"));
         Assertions.assertTrue(final_conf_modal.isDisplayed());
         WebElement final_checkout_btn = driver.findElement(By.id("final_place_order_button"));
         final_checkout_btn.click();
-        robot.delay(7500);
+        driver.manage().timeouts().implicitlyWait(8, TimeUnit.SECONDS);
 //        WebElement following_reasons = driver.findElement(By.cssSelector("\"#ext-gen64 > div > table > tbody > tr:nth-child(2) > td > div > span"));
 //        WebElement next_day_air_text = driver.findElement(By.xpath("//*[@id=\"ext-gen64\"]/div/table/tbody/tr[2]/td/div/span/ul/li[2]"));
 //        Assertions.assertTrue(following_reasons.isDisplayed());

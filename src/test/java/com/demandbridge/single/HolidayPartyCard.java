@@ -15,6 +15,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
+import java.util.concurrent.TimeUnit;
 
 public class HolidayPartyCard {
 
@@ -52,20 +53,20 @@ public class HolidayPartyCard {
         System.out.println(driver.getTitle());
 
         // Click the Shop link
-        robot.delay(3500);
+        driver.manage().timeouts().implicitlyWait(4, TimeUnit.SECONDS);
         WebElement shopLink = driver.findElement(By.linkText("SHOP"));
         shopLink.click();
-        robot.delay(2000);
+        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
 
         // Click Corporate Collateral to get to Holiday Party Cards
         WebElement corpColl = driver.findElement(By.linkText("Corporate Collateral"));
         Assertions.assertTrue(corpColl.isDisplayed());
         corpColl.click();
-        robot.delay(7000);
+        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
         WebElement holidayCards = driver.findElement(By.linkText("Holiday Party Card-DM"));
         Assertions.assertTrue(holidayCards.isDisplayed());
         holidayCards.click();
-        robot.delay(7000);
+        driver.manage().timeouts().implicitlyWait(7, TimeUnit.SECONDS);
         Assertions.assertEquals("Holiday Party Card-DM", "Holiday Party Card-DM");
         WebElement customize_btn = driver.findElement(By.id("customizebutton_btn"));
         customize_btn.click();
@@ -101,37 +102,37 @@ public class HolidayPartyCard {
         Selenide.sleep(20000);
 
         // Upload Attachments; step 1: push Approve button and then remove attachment: get ready to delete this
-//        robot.delay(7000);
+//        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);delay(7000);
 //        WebElement view_proof = driver.findElement(By.id("chili-customize-view-proof-button"));
 //        view_proof.click();
-//        robot.delay(1000);
+//        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);delay(1000);
 //        JavascriptExecutor js = (JavascriptExecutor)driver;
 //        js.executeScript("addRecipients()");                                    // This opens the file uploader field.
 //        WebElement m = driver.findElement(By.xpath("//input[@type='file']"));
 //        m.sendKeys("C:/upload-files/sample-1.csv");
-//        robot.delay(3000);
+//        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);delay(3000);
 //        Assertions.assertEquals("Recipients List", "Recipients List");
 //        WebElement remove_recipients = driver.findElement(By.xpath("//*[@id=\"chili-add-recipients\"]/div[4]/div[1]/div/table/tbody/tr[2]/td[3]/a"));
 //        remove_recipients.click();
-//        robot.delay(2000);
+//        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);delay(2000);
 //        driver.quit();
 
         // Upload Attachments; step 1: push Approve button and then remove attachment; replaced with above 2: ready to delete
-        /*robot.delay(7000);
+        /*driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);delay(7000);
         WebElement view_proof = driver.findElement(By.id("chili-customize-view-proof-button"));
         view_proof.click();
-        robot.delay(7000);
+        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);delay(7000);
         JavascriptExecutor js = (JavascriptExecutor)driver;
         js.executeScript("addRecipients()");                                    // This opens the file uploader field.
-        robot.delay(7000);
+        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);delay(7000);
         // driver.findElement(By.id("chiliRecipientsUploadForm_dz")).sendKeys("C:\\upload-files\\sample-1.csv");
         WebElement m = driver.findElement(By.xpath("//*[@id=\"chiliRecipientsUploadForm_dz\"]/div[1]/div"));
         m.sendKeys("C:\\upload-files\\sample-1.csv");
-        robot.delay(3000);*/
+        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);delay(3000);*/
         // Assertions.assertEquals("Recipients List", "Recipients List");
         /*WebElement remove_recipients = driver.findElement(By.xpath("//*[@id=\"chili-add-recipients\"]/div[4]/div[1]/div/table/tbody/tr[2]/td[3]/a"));
         remove_recipients.click();
-        robot.delay(2000);
+        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);delay(2000);
          */
 
         try {
