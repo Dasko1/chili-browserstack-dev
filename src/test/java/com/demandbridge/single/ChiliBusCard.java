@@ -57,7 +57,7 @@ public class ChiliBusCard {
         WebElement corpColl = driver.findElement(By.linkText("Corporate Collateral"));
         Assertions.assertTrue(corpColl.isDisplayed());
         corpColl.click();
-        Selenide.sleep(4000);
+        Selenide.sleep(7000);
         WebElement busCards = driver.findElement(By.linkText("Business Cards"));
         Assertions.assertTrue(busCards.isDisplayed());
         busCards.click();
@@ -182,7 +182,7 @@ public class ChiliBusCard {
         // Click Edit link on the top.
         WebElement edit_link = driver.findElement(By.linkText("Edit"));
         edit_link.click();
-        Selenide.sleep(15000);
+        Selenide.sleep(18000);
         Assertions.assertEquals("COR001 - Business Cards", "COR001 - Business Cards");
         WebElement edit_phone = driver.findElement(By.id("value-Phone"));
         edit_phone.clear();
