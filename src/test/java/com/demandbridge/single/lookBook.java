@@ -95,6 +95,7 @@ public class lookBook {
         WebElement hideHints = driver.findElement(By.id("ToggleHelp-button-03804BB8-0938-420D-89FE-628CFF0C9019"));
         Assertions.assertTrue(hideHints.isDisplayed());
         hideHints.click();                                      // Check next if hints are now gone
+        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
         Assertions.assertNotEquals("Please refer to the hints", "");
 
         // Edit fields
@@ -229,6 +230,11 @@ public class lookBook {
         Assertions.assertTrue(viewProofButton.isDisplayed());
         viewProofButton.click();
         driver.manage().timeouts().implicitlyWait(4, TimeUnit.SECONDS);
+
+        // Full Preview Popout
+        WebElement popout = driver.findElement(By.id("chili-expand-toggle"));
+        popout.click();
+        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 
         // Lines 234-48 are for the flipbook; ll.253-61 are for the lookbook. 
         /*WebElement create_flipbook = driver.findElement(By.id("chili-flipbook-text"));
