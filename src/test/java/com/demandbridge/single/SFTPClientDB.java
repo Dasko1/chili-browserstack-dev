@@ -2,14 +2,15 @@ package com.demandbridge.single;
 
 import com.jcraft.jsch.*;
 
+import java.net.MalformedURLException;
+
 public class SFTPClientDB {
 
-    private String host = "ftp.demandbridge.com";
-    private int port = 22;
+    private final String host = "ftp.demandbridge.com";
+    private final int port = 22;
     private Session session = null;
 
     public SFTPClientDB() {
-
     }
 
     public void connect() throws JSchException {
@@ -36,15 +37,19 @@ public class SFTPClientDB {
         }
     }
 
-    public static void main() throws JSchException, SftpException{
+    public static void main() throws JSchException, SftpException, MalformedURLException, InterruptedException {
 
         String downloadPath = "C:\\Users\\ADaskalopoulos\\Downloads\\";
         SFTPClientDB sftpClientDB = new SFTPClientDB();
 
+        // Get Order Number from ChiliApprovalsEdit.java ll.188-93!
+        // ChiliApprovalsEdit.ordNum();
+        // String orderNum = ChiliApprovalsEdit.x;
+        // System.out.println("The order number is: " + orderNum);
+
         sftpClientDB.connect();
-        sftpClientDB.download("/home/ftptest/00-X0040C-1.xml", downloadPath);
-        sftpClientDB.download("/home/ftptest/00-X0040C-1_doc_highres.pdf", downloadPath);
+        // sftpClientDB.download("/home/ftptest/00-X004D3-1.xml", downloadPath);                   //USE variable from l.47!!!
+        // sftpClientDB.download("/home/ftptest/00-X004D3-1_doc_highres.pdf", downloadPath);       // Same here!
         sftpClientDB.disconnect();
     }
-
 }

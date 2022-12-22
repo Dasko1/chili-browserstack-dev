@@ -4,6 +4,8 @@ import com.jcraft.jsch.JSchException;
 import com.jcraft.jsch.SftpException;
 import org.testng.annotations.Test;
 
+import java.net.MalformedURLException;
+
 public class RunClass {
 
     // Run in BrowserStack Dashboard
@@ -12,7 +14,7 @@ public class RunClass {
     public static final String URL = "https://" + AUTOMATE_USERNAME + ":" + AUTOMATE_ACCESS_KEY + "@hub-cloud.browserstack.com/wd/hub";
 
     @Test
-    public void runClassTest() throws InterruptedException, JSchException, SftpException {
+    public void runClassTest() throws InterruptedException, JSchException, SftpException, MalformedURLException {
 
         // new MailosaurCheck().mailosaurCheckTest();
         // FTPDownloadDemo.main();
@@ -21,8 +23,8 @@ public class RunClass {
 
         // FileRead.main();
         // SFTPClient.main();
-        // SFTPClientDB.main();
-        // FileDownload_1.main("C:\\Users\\ADaskalopoulos\\Downloads\\00-X0040C-1.xml");
-        // FileDownload_1.main("C:\\Users\\ADaskalopoulos\\Downloads\\00-X0040C-1_doc_highres.pdf");
+        SFTPClientDB.main();
+        // FileDownload_1.main("C:\\Users\\ADaskalopoulos\\Downloads\\00-X004D3-1.xml");
+        // FileDownload_1.main("C:\\Users\\ADaskalopoulos\\Downloads\\00-X004D3-1_doc_highres.pdf");
     }
 }

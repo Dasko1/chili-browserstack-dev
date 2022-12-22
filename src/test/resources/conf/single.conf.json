@@ -1,12 +1,12 @@
 {
   "server": "hub-cloud.browserstack.com",
-  "user": "adaskalopoulos1",
-  "key": "RwofYrpjLEBwrwzpTdSc",
+  "user": "anastasiosdaskal1",
+  "key": "swze39oMCvW69Gsgh8qA",
 
   "capabilities": {
-    "project": "EQ",
-    "build": "EQ Tests",
-    "name": "EQ Automation Reports - DEV",
+    "project": "Chili",
+    "build": "Chili Tests",
+    "name": "Chili Automation Tests - DEV",
     "browserstack.debug": true
   },
 
