@@ -28,6 +28,7 @@ public class ChiliApprovalsEdit extends BrowserStackTest {
     public static final String AUTOMATE_ACCESS_KEY = "swze39oMCvW69Gsgh8qA";
     public static final String URL = "https://" + AUTOMATE_USERNAME + ":" + AUTOMATE_ACCESS_KEY + "@hub-cloud.browserstack.com/wd/hub";
     public static String x = "";
+    private static final String orderNumber = "";                                                     // Sends Order Number, l.193.
 
 
     @Test
@@ -60,6 +61,7 @@ public class ChiliApprovalsEdit extends BrowserStackTest {
         // Shopping Cart
         Selenide.sleep(5000);
         $(By.id("checkout_update_quantities_button")).shouldBe(Condition.visible);
+        Selenide.sleep(2000);
 
         // Shipping Location/Billing Required Fields: set Deliver Options to Next Day Air; push Place This Order Now button l.96
         SelenideElement attention_field = $(By.id("shipping_attention"));
@@ -108,11 +110,7 @@ public class ChiliApprovalsEdit extends BrowserStackTest {
         // Order Confirmation Page: find order number by CSS element: l.113;  Confirm "Thank you for placing your order!" on page: l.112.
         $("#main_content > div > h1 ").shouldBe(Condition.visible);
         String orderNumber = $("p a[href*='ViewOrder']").text();
-        System.out.println("The order number is: " + orderNumber);
-        String i = orderNumber;
-        ordNum(i);
-        StateManager.setProperty("orderNumber", orderNumber);
-
+        System.out.println("\nThe order number is: " + orderNumber);
 
         // Click Approvals link
         open("https://generic.development.dbenterprise.com/approval/ApprovalCenter.epm?nhi=250");
@@ -170,27 +168,22 @@ public class ChiliApprovalsEdit extends BrowserStackTest {
         SFTPClientDB.main();
 
         //Return to Approvals
-        open("https://generic.development.dbenterprise.com/approval/ApprovalCenter.epm?nhi=250");
-        Selenide.sleep(15000);
+        // open("https://generic.development.dbenterprise.com/approval/ApprovalCenter.epm?nhi=250");
+        // Selenide.sleep(20000);
 
 
         // Setting the status of test as 'passed' or 'failed' based on the condition; if title of the web page contains 'DB Commerce'
         WebDriverWait wait = new WebDriverWait(driver, 10);
         try {
-            wait.until(ExpectedConditions.titleContains("DB Commerce"));
-            markTestStatus("passed","Yaay, the title contains 'DB Commerce'!",driver);
+            wait.until(ExpectedConditions.titleContains("DB Demo"));
+            markTestStatus("passed","Yaay, the title contains 'DB Demo'!",driver);
         }
         catch(Exception e) {
-            markTestStatus("failed","Title does not contain 'CheckoutV2'!",driver);
+            markTestStatus("failed","Title does not contain 'DB Demo'!",driver);
         }
 
         driver.quit();
     }
-
-    public static void ordNum(String param){
-        System.out.println("The order number is: " + param);
-    }
-
 
    // This method accepts the status, reason and WebDriver instance and marks the test on BrowserStack
     public static void markTestStatus(String status, String reason, WebDriver driver) {
@@ -199,5 +192,4 @@ public class ChiliApprovalsEdit extends BrowserStackTest {
         // System.out.println("Expected file download confirmed: " + (jse.executeScript("browserstack_executor: {\"action\": \"fileExists\", \"arguments\": {\"fileName\": \"00-X00248-2_doc_lowres.pdf\"}}")));
         // System.out.println("Expected file download confirmed: " + (jse.executeScript("browserstack_executor: {\"action\": \"fileExists\", \"arguments\": {\"fileName\": \"00-X00248-2_doc_highres.pdf\"}}")));
     }
-
 }
