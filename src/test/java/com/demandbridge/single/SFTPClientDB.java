@@ -39,6 +39,9 @@ public class SFTPClientDB {
 
     public static void main() throws JSchException, SftpException, MalformedURLException, InterruptedException {
 
+        String printOrderNumber = LoginPageGeneric.chiliGenericLogin_Test();
+        System.out.println("\nThe Order Number from ChiliApprovalsEdit.java is: " + printOrderNumber);
+
         String downloadPath = "C:\\Users\\ADaskalopoulos\\Downloads\\";
         SFTPClientDB sftpClientDB = new SFTPClientDB();
 
@@ -48,8 +51,8 @@ public class SFTPClientDB {
         // System.out.println("The order number is: " + orderNum);
 
         sftpClientDB.connect();
-        // sftpClientDB.download("/home/ftptest/00-X004D3-1.xml", downloadPath);                   //USE variable from l.47!!!
-        // sftpClientDB.download("/home/ftptest/00-X004D3-1_doc_highres.pdf", downloadPath);       // Same here!
+        sftpClientDB.download("/home/ftptest/" + printOrderNumber + "-1.xml", downloadPath);
+        sftpClientDB.download("/home/ftptest/" + printOrderNumber + "-1_doc_highres.pdf", downloadPath);
         sftpClientDB.disconnect();
     }
 }

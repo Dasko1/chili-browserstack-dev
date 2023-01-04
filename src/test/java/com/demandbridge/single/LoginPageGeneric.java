@@ -1,5 +1,6 @@
 package com.demandbridge.single;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
@@ -50,16 +51,19 @@ public class LoginPageGeneric {
 
         System.out.println(driver.getTitle());
 
-        // Click the Shop link
+        // Click the Approvals link; in ll.61-62, click the 2nd down.  Can we get rid of the top one?
         Selenide.sleep(2000);
         Assertions.assertTrue(driver.getTitle().contentEquals("DB Commerce"));
         WebElement shopLink = driver.findElement(By.linkText("APPROVALS"));
         shopLink.click();
         Selenide.sleep(2000);
         Assertions.assertEquals("Orders Requiring Approval", "Orders Requiring Approval");
+        WebElement actionTaken = driver.findElement(By.linkText("Action Taken"));
+        actionTaken.click();
+        Selenide.sleep(2000);
 
         // Get the topmost order number
-        String orderNumber = driver.findElement(By.cssSelector("#approval_content > table > tbody > tr:nth-child(2) > td:nth-child(1) > a")).getText();
+        String orderNumber = driver.findElement(By.cssSelector("#approval_content > table > tbody > tr:nth-child(3) > td:nth-child(1) > a")).getText();
         // System.out.println("\nThe order number is: " + orderNumber);    This will print the order in the class that calls LoginPageGeneric
 
         // Setting the status of test as 'passed' or 'failed' based on the condition; if title of the web page contains 'DB Commerce'
