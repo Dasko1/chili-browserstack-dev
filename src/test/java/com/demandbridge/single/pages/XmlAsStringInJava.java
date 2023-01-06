@@ -11,8 +11,8 @@ public class XmlAsStringInJava {
             throws ParserConfigurationException, SAXException, IOException {
 
         // Our XML file for this example
-        File xmlFile = new File("00-X00248-2.xml");
-        File xmlFile1 = new File("00-X00248-2_doc_highres.pdf");
+        File xmlFile = new File("00-X0045J-1.xml");
+        // File xmlFile1 = new File("00-X00248-2_doc_highres.pdf");
 
         // Let's get XML file as String using BufferedReader FileReader uses platform's default character encoding
         // if you need to specify a different encoding, use InputStreamReader

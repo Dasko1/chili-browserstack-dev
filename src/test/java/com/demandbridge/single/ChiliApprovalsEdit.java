@@ -32,7 +32,7 @@ public class ChiliApprovalsEdit extends BrowserStackTest {
 
 
     @Test
-    public static void chiliApprovalsAsIs_Test() throws MalformedURLException, SftpException, InterruptedException, JSchException {
+    public static void chiliApprovalsAsIs_Test() throws Exception {
 
         DesiredCapabilities caps = new DesiredCapabilities();
         caps.setCapability("os_version", "10");
@@ -164,8 +164,7 @@ public class ChiliApprovalsEdit extends BrowserStackTest {
 
         // Check Mailosaur for lowres PDF
         new MailosaurCheck().mailosaurCheckTest();
-        // Download the files from the ftpserver
-        SFTPClientDB.main();
+
 
         //Return to Approvals
         // open("https://generic.development.dbenterprise.com/approval/ApprovalCenter.epm?nhi=250");
