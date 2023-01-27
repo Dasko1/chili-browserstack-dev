@@ -70,15 +70,15 @@ public class menu {
         order_qty_field.sendKeys(Keys.RETURN);
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         WebElement customizeBtn = driver.findElement(By.id("customizebutton_btn"));
-        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
         customizeBtn.click();
+        driver.manage().timeouts().implicitlyWait(12, TimeUnit.SECONDS);
 
         // Go to Event Information tab first
         driver.manage().timeouts().implicitlyWait(17, TimeUnit.SECONDS);
         WebElement eventInfoTab = driver.findElement(By.id("chili-tab-panel__tab_973"));
         Actions actions = new Actions(driver);
         actions.moveToElement(eventInfoTab).click().perform();
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
         WebElement date = driver.findElement(By.id("value-date"));
         date.click();
         WebElement day = driver.findElement(By.cssSelector(".x-date-today > a:nth-child(1) > em:nth-child(1) > span:nth-child(1)"));
