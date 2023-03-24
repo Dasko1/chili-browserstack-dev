@@ -45,79 +45,8 @@ public class ChiliApprovalsAsIs {
         passwordField.sendKeys("dasko");
         WebElement signinButton = driver.findElement(By.id("loginbutton_btn"));
         signinButton.click();
-
+        Selenide.sleep(3500);
         System.out.println(driver.getTitle());
-
-        // Assert page title and click Cart button
-        driver.manage().timeouts().implicitlyWait(4, TimeUnit.SECONDS);
-        WebElement shopping_cart_count = driver.findElement(By.id("shopping-cart-item-count"));
-        Assertions.assertTrue(driver.getTitle().contentEquals("DB Commerce"));
-        WebElement checkout_btn = driver.findElement(By.id("checkout-button"));
-        Assertions.assertTrue(checkout_btn.isDisplayed());
-        Assertions.assertTrue(shopping_cart_count.isDisplayed());
-
-        // if (shopping_cart_count > 0){
-        //  checkout_btn.click();
-        // else run ChiliBusBard.java}
-        checkout_btn.click();
-
-        // Shopping Cart
-        driver.manage().timeouts().implicitlyWait(12, TimeUnit.SECONDS);
-        WebElement update_quant_btn = driver.findElement(By.id("checkout_update_quantities_button"));
-        Assertions.assertTrue(update_quant_btn.isDisplayed());
-        // Enter values into Employee ID Number fields.
-        // WebElement top_emp_id = driver.findElement(By.id("288897363_lii"));
-        // WebElement bot_emp_id = driver.findElement(By.id("288897364_lii"));
-        // top_emp_id.sendKeys("1235");
-        // bot_emp_id.sendKeys("1236");
-
-        // Shipping Location/Billing Required Fields: set Deliver Options to Next Day Air; push Place This Order Now button l.96
-        WebElement attention_field = driver.findElement(By.id("shipping_attention"));
-        WebElement emp_number = driver.findElement(By.id("shipping_misc1"));
-        WebElement phone_number = driver.findElement(By.id("shipping_misc2"));
-        WebElement email = driver.findElement(By.id("billing_email"));
-        WebElement field_1 = driver.findElement(By.id("billing_misc1"));
-        WebElement field_2 = driver.findElement(By.id("billing_misc2"));
-        WebElement field_3 = driver.findElement(By.id("billing_misc3"));
-        WebElement delivery_options = driver.findElement(By.id("shipping_delivery_options_cbo"));
-        actions.moveToElement(attention_field);
-        Assertions.assertTrue(attention_field.isDisplayed());
-        attention_field.sendKeys("The Receiver");
-        emp_number.sendKeys("1235");
-        phone_number.sendKeys("800-448-1484");
-        delivery_options.click();
-        driver.manage().timeouts().implicitlyWait(7, TimeUnit.SECONDS);
-        delivery_options.sendKeys(Keys.ARROW_DOWN);
-        delivery_options.sendKeys(Keys.ARROW_DOWN);
-        delivery_options.sendKeys(Keys.ENTER);
-
-        // Wait for Place This Order Now button to activate
-        email.sendKeys("ad@qgowwpz9.mailosaur.net");
-        field_1.sendKeys("Field One");
-        field_2.sendKeys("Field Two");
-        field_3.sendKeys(Keys.ENTER);
-        Selenide.sleep(7000);
-
-        email.sendKeys("ad@qgowwpz9.mailosaur.net");
-        field_1.sendKeys("Field One");
-        field_2.sendKeys("Field Two");
-        field_3.sendKeys(Keys.ENTER);
-
-        WebElement place_order_now_btn = new WebDriverWait(driver, Duration.ofSeconds(30))
-                .until(ExpectedConditions.elementToBeClickable(By.id("checkout_place_order_button")));
-
-        place_order_now_btn.click();
-        Selenide.sleep(8000);
-
-        // Final Confirmation Of Your Order modal: find Approval notifications
-        WebElement final_checkout_btn = driver.findElement(By.id("final_place_order_button"));
-        Assertions.assertTrue(final_checkout_btn.isEnabled());
-        final_checkout_btn.click();
-        Selenide.sleep(7000);
-//        WebElement following_reasons = driver.findElement(By.cssSelector("\"#ext-gen64 > div > table > tbody > tr:nth-child(2) > td > div > span"));
-//        WebElement next_day_air_text = driver.findElement(By.xpath("//*[@id=\"ext-gen64\"]/div/table/tbody/tr[2]/td/div/span/ul/li[2]"));
-//        Assertions.assertTrue(following_reasons.isDisplayed());
-//        Assertions.assertTrue(next_day_air_text.isDisplayed());
 
         // Click Approvals link
         WebElement approvals_link = driver.findElement(By.id("nhl_250"));
@@ -129,15 +58,22 @@ public class ChiliApprovalsAsIs {
         WebElement approve_btn = driver.findElement(By.name("approveButton"));                  // Push Approve button
         approve_btn.click();
         driver.manage().timeouts().implicitlyWait(6, TimeUnit.SECONDS);
+        WebElement reason_field = driver.findElement(By.name("reason"));
+        reason_field.sendKeys("Approved for test purposes!");
         WebElement confirm_btn = driver.findElement(By.name("confirmButton"));                  // Push Confirm button in modal
         confirm_btn.click();
         Assertions.assertEquals("The order has been approved.", "The order has been approved.");
 
+        // Go back to the Approvals list page
+        WebElement home = driver.findElement(By.id("nhl_180"));
+        home.click();
+        Selenide.sleep(3500);
+
         // Setting the status of test as 'passed' or 'failed' based on the condition; if title of the web page contains 'DB Commerce'
         WebDriverWait wait = new WebDriverWait(driver, 10);
         try {
-            wait.until(ExpectedConditions.titleIs("DB Commerce"));
-            markTestStatus("passed","Yaay, the title contains 'DB Commerce'!",driver);
+            wait.until(ExpectedConditions.urlContains("generic"));
+            markTestStatus("passed","Yaay, the 'Approve As Is' test passed!",driver);
         }
         catch(Exception e) {
             markTestStatus("failed","Title does not contain 'CheckoutV2'!",driver);

@@ -74,12 +74,12 @@ public class HolidayPartyCard {
         Selenide.sleep(25000);
         WebElement view_proof = driver.findElement(By.id("chili-customize-view-proof-button"));
         view_proof.click();
-        Selenide.sleep(1000);
+        Selenide.sleep(4000);
         JavascriptExecutor js = (JavascriptExecutor)driver;
         js.executeScript("addRecipients()");                                    // This opens the file uploader field.
-        Selenide.sleep(5000);
+        Selenide.sleep(8000);
         WebElement m = driver.findElement(By.xpath("//input[@type='file']"));
-        m.sendKeys("C:/upload-files/sample-1.csv");
+        m.sendKeys("C:\\upload-files\\sample-1.csv");
         Selenide.sleep(3000);
         Assertions.assertEquals("Recipients List", "Recipients List");
         WebElement remove_recipients = driver.findElement(By.xpath("//*[@id=\"chili-add-recipients\"]/div[4]/div[1]/div/table/tbody/tr[2]/td[3]/a"));

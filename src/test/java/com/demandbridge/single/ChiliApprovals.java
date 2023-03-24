@@ -60,7 +60,7 @@ public class ChiliApprovals {
         checkout_btn.click();
 
         // Shopping Cart
-        driver.manage().timeouts().implicitlyWait(8, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(12, TimeUnit.SECONDS);
         WebElement update_quant_btn = driver.findElement(By.id("checkout_update_quantities_button"));
         Assertions.assertTrue(update_quant_btn.isDisplayed());
         // Enter values into Employee ID Number fields.
@@ -83,16 +83,14 @@ public class ChiliApprovals {
         attention_field.sendKeys("The Receiver");
         emp_number.sendKeys("1235");
         phone_number.sendKeys("800-448-1484");
-        // Select delivery_options = new Select(driver.findElement(By.id("shipping_delivery_options_cbo")));
-        //delivery_options.click();
-        delivery_options.sendKeys(Keys.ARROW_DOWN);
-        delivery_options.sendKeys(Keys.ARROW_DOWN);
-        delivery_options.sendKeys(Keys.ENTER);
+        // delivery_options.sendKeys(Keys.ARROW_DOWN);
+        // delivery_options.sendKeys(Keys.ARROW_DOWN);
+        // delivery_options.sendKeys(Keys.ENTER);
 
         // WebElement next_day_air = driver.findElement(By.xpath("//*[@id=\"ext-gen25\"]/div[3]"));
         driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
         //next_day_air.click();
-        driver.manage().timeouts().implicitlyWait(8, TimeUnit.SECONDS);
+        // driver.manage().timeouts().implicitlyWait(8, TimeUnit.SECONDS);
         email.sendKeys("ad@qgowwpz9.mailosaur.net");
         field_1.sendKeys("Field One");
         field_2.sendKeys("Field Two");

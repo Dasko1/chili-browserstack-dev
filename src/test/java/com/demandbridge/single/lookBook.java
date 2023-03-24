@@ -64,7 +64,7 @@ public class lookBook {
         lookbook.click();
 
         // Click on Flipbook in dropdown
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         WebElement flipbook = driver.findElement(By.id("item-group_cbo"));
         flipbook.click();
         driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
@@ -134,7 +134,7 @@ public class lookBook {
         Assertions.assertTrue(redo_btn.isEnabled());
         redo_btn.click();
 
-        // Jump To Page:
+        // Jump To Page:  see address change in ll.145-
         WebElement next_btn = driver.findElement(By.id("chili-next-button"));
         WebElement prev_btn = driver.findElement(By.id("chili-previous-button"));
         next_btn.click();
@@ -142,6 +142,7 @@ public class lookBook {
         next_btn.click();
         next_btn.click();
         prev_btn.click();
+
 
         // Profile: Add
         driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);

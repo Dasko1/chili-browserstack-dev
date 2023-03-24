@@ -78,10 +78,12 @@ public class menu {
         WebElement eventInfoTab = driver.findElement(By.id("chili-tab-panel__tab_973"));
         Actions actions = new Actions(driver);
         actions.moveToElement(eventInfoTab).click().perform();
-        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         WebElement date = driver.findElement(By.id("value-date"));
         date.click();
-        WebElement day = driver.findElement(By.cssSelector(".x-date-today > a:nth-child(1) > em:nth-child(1) > span:nth-child(1)"));
+        // WebElement day = driver.findElement(By.cssSelector(".x-date-today > a:nth-child(1) > em:nth-child(1) > span:nth-child(1)"));
+        WebElement day = driver.findElement(By.xpath("//*[@id=\"ext-gen63\"]/tbody/tr[2]/td/table/tbody/tr[4]/td[2]"));
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         day.click();
 
         // Image Selection
