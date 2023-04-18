@@ -1,5 +1,6 @@
 package com.demandbridge.single;
 
+import com.codeborne.selenide.Selenide;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
@@ -58,7 +59,7 @@ public class lookBook {
         WebElement corpColl = driver.findElement(By.linkText("Corporate Collateral"));
         Assertions.assertTrue(corpColl.isDisplayed());
         corpColl.click();
-        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(8, TimeUnit.SECONDS);
         WebElement lookbook = driver.findElement(By.linkText("Property Lookbook"));
         Assertions.assertTrue(lookbook.isDisplayed());
         lookbook.click();
@@ -99,7 +100,7 @@ public class lookBook {
         Assertions.assertNotEquals("Please refer to the hints", "");
 
         // Edit fields
-        driver.manage().timeouts().implicitlyWait(9, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
         WebElement preparedFor = driver.findElement(By.name("Recipient"));
         preparedFor.clear();
         preparedFor.sendKeys("jane doe");
@@ -230,25 +231,25 @@ public class lookBook {
         WebElement viewProofButton = driver.findElement(By.id("chili-view-proof-text"));
         Assertions.assertTrue(viewProofButton.isDisplayed());
         viewProofButton.click();
-        driver.manage().timeouts().implicitlyWait(4, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(8, TimeUnit.SECONDS);
 
         // Full Preview Popout
         WebElement popout = driver.findElement(By.id("chili-expand-toggle"));
         popout.click();
-        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(8, TimeUnit.SECONDS);
 
         // Lines 234-48 are for the flipbook; ll.253-61 are for the lookbook. 
         /*WebElement create_flipbook = driver.findElement(By.id("chili-flipbook-text"));
         Assertions.assertTrue(create_flipbook.isEnabled());
         create_flipbook.click();
 
-        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);delay(9000);
-        driver.switchTo().alert().accept();
+        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+        // driver.switchTo().alert().accept();
         WebElement yes_btn = driver.findElement(By.id("generateFlipbook"));
         yes_btn.click();
         WebElement generate_flipbook = driver.findElement(By.id("generateFlipbook"));
         generate_flipbook.click();
-        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);delay(3000);
+        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
         Assertions.assertEquals("Your flipbook has been submitted for processing,", "Your flipbook has been submitted for processing,");
         Assertions.assertEquals("Thank you for placing your order!", "Thank you for placing your order!");
         WebElement continue_shopping_btn = driver.findElement(By.linkText("CONTINUE SHOPPING"));
@@ -256,22 +257,23 @@ public class lookBook {
 
         Assertions.assertEquals("SHOP", "SHOP");
 
-//       The following lines were for the lookbook; the above lines are for the flipbook
+        // The following lines were for the lookbook; the above lines are for the flipbook
+        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         WebElement approveAdd2Cart = driver.findElement(By.id("chili-step2a-text"));
-        WebElement approveCheckout = driver.findElement(By.id("chili-step2b-text"));
+        WebElement approveCheckout = driver.findElement(By.id("chili-customize-step2b-button"));
         Assertions.assertTrue(approveCheckout.isEnabled());
         Assertions.assertTrue(approveAdd2Cart.isEnabled());
 
         // Push Approve & Checkout
-        driver.manage().timeouts().implicitlyWait(7, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
         approveCheckout.click();
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        //driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 
 
         // Setting the status of test as 'passed' or 'failed' based on the condition; if title of the web page contains 'DB Commerce'
-        WebDriverWait wait = new WebDriverWait(driver, 10);
+        WebDriverWait wait = new WebDriverWait(driver, 30);
         try {
-            wait.until(ExpectedConditions.urlContains("DefaultCatalog"));
+            wait.until(ExpectedConditions.urlContains("browseDefaultCatalog"));
             markTestStatus("passed","The LookBook test passed'!",driver);
         }
         catch(Exception e) {

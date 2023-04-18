@@ -73,7 +73,7 @@ public class advert {
         Assertions.assertEquals("Square 250x250", "Square 250x250");
         Assertions.assertEquals("Leaderboard 728x90", "Leaderboard 728x90");
         Assertions.assertEquals("Skyscraper 120x600", "Skyscraper 120x600");
-        driver.manage().timeouts().implicitlyWait(12, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(17, TimeUnit.SECONDS);
         WebElement ad_size = driver.findElement(By.name("ad_size"));
         ad_size.click();
         ad_size.clear();

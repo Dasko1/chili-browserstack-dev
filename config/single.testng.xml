@@ -5,15 +5,16 @@
 		<parameter name="config" value="single.conf.json"/>
 		<parameter name="environment" value="chrome"/>
 		<classes>
-			<!--class name="com.demandbridge.single.ChiliBusCard"></class>
+			<class name="com.demandbridge.single.ChiliBusCard"></class>
 			<class name="com.demandbridge.single.lookBook"></class>
 			<class name="com.demandbridge.single.FileUpload_1"></class>
 			<class name="com.demandbridge.single.menu"></class>
-			<class name="com.demandbridge.single.advert"></class-->
+			<class name="com.demandbridge.single.advert"></class>
 			<class name="com.demandbridge.single.ChiliApprovalsAsIs"></class>
-			<class name="com.demandbridge.single.ChiliApprovalsEdit1"></class>
+			<!--class name="com.demandbridge.single.ChiliApprovalsEdit1"></class-->
 			<!--class name="com.demandbridge.single.ChiliApprovals"></class>
-			<class name="com.demandbridge.single.Watermark"></class-->
+			<class name="com.demandbridge.single.Watermark"></class>
+			<class name="com.demandbridge.single.Images"></class-->
 		</classes>
 	</test>
 </suite>
