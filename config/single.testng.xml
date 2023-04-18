@@ -9,9 +9,9 @@
 			<class name="com.demandbridge.single.lookBook"></class>
 			<class name="com.demandbridge.single.menu"></class>
 			<class name="com.demandbridge.single.advert"></class>
-			<!--class name="com.demandbridge.single.ChiliApprovalsAsIs"></class>
-			<class name="com.demandbridge.single.ChiliApprovalsEdit"></class>
-			<class name="com.demandbridge.single.ChiliApprovals"></class>
+			<class name="com.demandbridge.single.ChiliApprovalsAsIs"></class>
+			<!--class name="com.demandbridge.single.ChiliApprovalsEdit"></class-->
+			<!--class name="com.demandbridge.single.ChiliApprovals"></class>
 			<class name="com.demandbridge.single.Watermark"></class-->
 		</classes>
 	</test>

@@ -35,7 +35,7 @@ public class advert {
 
         // Go to Generic page and login
         WebDriver driver = new RemoteWebDriver(new URL(URL), caps);
-        driver.get("https://generic.development.dbenterprise.com/");
+        driver.get("https://generic.dbenterprise.com/");
         JavascriptExecutor jse = (JavascriptExecutor)driver;
         Robot robot = new Robot();
         driver.manage().window().maximize();
@@ -49,11 +49,11 @@ public class advert {
         System.out.println(driver.getTitle());
 
         // Click the Shop link
-        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         Assertions.assertTrue(driver.getTitle().contentEquals("DB Commerce"));
         WebElement shopLink = driver.findElement(By.linkText("SHOP"));
         shopLink.click();
-        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 
         // Click on Advertising & go to Mobile Banking App
         WebElement advertising = driver.findElement(By.linkText("Advertising"));

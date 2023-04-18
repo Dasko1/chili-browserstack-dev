@@ -35,7 +35,7 @@ public class ChiliBusCard {
 
         // Go to Generic page and login
         WebDriver driver = new RemoteWebDriver(new URL(URL), caps);
-        driver.get("https://generic.development.dbenterprise.com/");
+        driver.get("https://generic.dbenterprise.com/");
         driver.manage().window().maximize();
         WebElement usernameField = driver.findElement(By.name("username"));
         usernameField.sendKeys("daskoadmin");
