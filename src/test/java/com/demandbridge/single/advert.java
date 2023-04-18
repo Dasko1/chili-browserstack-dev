@@ -73,11 +73,15 @@ public class advert {
         Assertions.assertEquals("Square 250x250", "Square 250x250");
         Assertions.assertEquals("Leaderboard 728x90", "Leaderboard 728x90");
         Assertions.assertEquals("Skyscraper 120x600", "Skyscraper 120x600");
-        driver.manage().timeouts().implicitlyWait(12, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(17, TimeUnit.SECONDS);
         WebElement ad_size = driver.findElement(By.name("ad_size"));
         ad_size.click();
         ad_size.clear();
         ad_size.sendKeys("Square 250x250");
+        ad_size.sendKeys(Keys.RETURN);
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        ad_size.clear();
+        ad_size.sendKeys("Skyscraper 120x600");
         ad_size.sendKeys(Keys.RETURN);
         // Title
         WebElement title = driver.findElement(By.name("title"));
@@ -109,7 +113,7 @@ public class advert {
         WebElement save_profile_btn = driver.findElement(By.xpath("//*[@id=\"chili_new_profile_name_wrapper\"]/div[1]/a[1]"));
         save_profile_btn.click();
         // Check for new profile
-        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(7, TimeUnit.SECONDS);
         WebElement show_profiles = driver.findElement(By.name("profileCombo"));
         show_profiles.click();
         Assertions.assertEquals("Auto Test Profile", "Auto Test Profile");

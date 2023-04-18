@@ -75,13 +75,19 @@ public class menu {
 
         // Go to Event Information tab first
         driver.manage().timeouts().implicitlyWait(17, TimeUnit.SECONDS);
-        // WebElement eventInfoTab = driver.findElement(By.id("chili-tab-panel__tab_973"));   already there by default.
+        WebElement eventInfoTab = driver.findElement(By.id("chili-tab-panel__tab_973"));   //already there by default.
         Actions actions = new Actions(driver);
+
         // actions.moveToElement(eventInfoTab).click().perform();   paired with l.78
         driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+        actions.moveToElement(eventInfoTab).click().perform();
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+
         WebElement date = driver.findElement(By.id("value-date"));
         date.click();
-        WebElement day = driver.findElement(By.cssSelector(".x-date-today > a:nth-child(1) > em:nth-child(1) > span:nth-child(1)"));
+        // WebElement day = driver.findElement(By.cssSelector(".x-date-today > a:nth-child(1) > em:nth-child(1) > span:nth-child(1)"));
+        WebElement day = driver.findElement(By.xpath("//*[@id=\"ext-gen63\"]/tbody/tr[2]/td/table/tbody/tr[4]/td[2]"));
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         day.click();
 
         // Image Selection

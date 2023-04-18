@@ -9,8 +9,8 @@ public class Watermark {
     public static void main(String[] args) throws IOException {
 
         PDFUtil pdfUtil = new PDFUtil();
-        String getText = pdfUtil.getText("C:\\Users\\ADaskalopoulos\\Downloads\\COR001.pdf", 1, 1);
-        int pageCount = pdfUtil.getPageCount("C:\\Users\\ADaskalopoulos\\Downloads\\COR004.pdf");
+        String getText = pdfUtil.getText("C:\\watermark-test\\COR001.pdf", 1, 1);
+        int pageCount = pdfUtil.getPageCount("C:\\watermark-test\\COR004.pdf");
         if (pageCount == 6){
             System.out.println("The flipbook has " + pageCount + " pages!");
         }

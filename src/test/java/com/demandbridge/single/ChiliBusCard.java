@@ -206,7 +206,7 @@ public class ChiliBusCard {
             markTestStatus("passed","Yaay, the Business Card test passed'!",driver);
         }
         catch(Exception e) {
-            markTestStatus("failed","Title does not contain 'CheckoutV2'!",driver);
+            markTestStatus("failed","Title does not contain 'Login.epm'!",driver);
         }
 
         driver.quit();

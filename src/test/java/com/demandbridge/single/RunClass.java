@@ -24,9 +24,9 @@ public class RunClass {
         // CreateFile.main();
         // WriteToFile.main();
 
-        FileRead.main();
+        // FileRead.main();
         // SFTPClient.main();
-        // SFTPClientDB.main();
+        SFTPClientDB.main();
         // FileDownload_1.main("C:\\Users\\ADaskalopoulos\\Downloads\\" + printOrderNumber + "-1.xml");
         // FileDownload_3.main("C:\\Users\\ADaskalopoulos\\Downloads\\" + printOrderNumber + "-1_doc_highres.pdf");
     }

@@ -58,6 +58,8 @@ public class FileDownload_2 {
         Element.click();
         Thread.sleep(2000);
 
+        System.out.println(jse.executeScript("browserstack_executor: {\"action\": \"annotate\", \"arguments\": {\"data\": \"THE PDF EXPRESS FILE EXISTS!!\"}}"));
+
         System.out.println(jse.executeScript("browserstack_executor: {\"action\": \"fileExists\", \"arguments\": {\"fileName\": \"BrowserStack - List of devices to test on.csv\"}}"));
 
         driver.quit();

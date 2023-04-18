@@ -3,6 +3,7 @@ package com.demandbridge.single;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.conditions.Text;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -17,8 +18,10 @@ import org.testng.annotations.Test;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.Duration;
+import java.util.function.BooleanSupplier;
 
 import static com.codeborne.selenide.Selenide.$;
+import static org.openqa.selenium.By.cssSelector;
 
 public class LoginPageDBDevTest {
 
@@ -60,10 +63,15 @@ public class LoginPageDBDevTest {
         Selenide.sleep(2000);
         Assertions.assertEquals("Start Here", "Start Here");
 
+        // Click Chili Items
+        WebElement chili_items = driver.findElement(By.linkText("Chili Items"));
+        chili_items.click();
+        Assertions.assertEquals("Chili Image Point of Interest", "Chili Image Point of Interest");
+
         // Setting the status of test as 'passed' or 'failed' based on the condition; if title of the web page contains 'DB Commerce'
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         try {
-            wait.until(ExpectedConditions.urlContains("BrowseCatalog"));
+            wait.until(ExpectedConditions.urlContains("browseDefaultCatalog"));
             markTestStatus("passed","Yaay, the Thumbnail test passed'!",driver);
         }
         catch(Exception e) {
