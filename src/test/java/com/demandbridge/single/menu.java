@@ -36,7 +36,7 @@ public class menu {
 
         // Go to Generic page and login
         WebDriver driver = new RemoteWebDriver(new URL(URL), caps);
-        driver.get("https://generic.development.dbenterprise.com/");
+        driver.get("https://generic.dbenterprise.com/");
         driver.manage().window().maximize();
         WebElement usernameField = driver.findElement(By.name("username"));
         usernameField.sendKeys("daskoadmin");
@@ -75,10 +75,14 @@ public class menu {
 
         // Go to Event Information tab first
         driver.manage().timeouts().implicitlyWait(17, TimeUnit.SECONDS);
-        WebElement eventInfoTab = driver.findElement(By.id("chili-tab-panel__tab_973"));
+        WebElement eventInfoTab = driver.findElement(By.id("chili-tab-panel__tab_973"));   //already there by default.
         Actions actions = new Actions(driver);
+
+        // actions.moveToElement(eventInfoTab).click().perform();   paired with l.78
+        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
         actions.moveToElement(eventInfoTab).click().perform();
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+
         WebElement date = driver.findElement(By.id("value-date"));
         date.click();
         // WebElement day = driver.findElement(By.cssSelector(".x-date-today > a:nth-child(1) > em:nth-child(1) > span:nth-child(1)"));
@@ -95,7 +99,7 @@ public class menu {
         driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 
         // Go to Menu Items tab
-        WebElement menu_items_tab = driver.findElement(By.id("chili-tab-panel__tab_972"));
+        WebElement menu_items_tab = driver.findElement(By.id("chili-tab-panel__tab_2899"));
         menu_items_tab.click();
 
         //Tooltips: go from top to down

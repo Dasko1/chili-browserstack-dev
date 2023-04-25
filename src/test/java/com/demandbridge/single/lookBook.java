@@ -37,7 +37,7 @@ public class lookBook {
 
         // Go to Generic page and login
         WebDriver driver = new RemoteWebDriver(new URL(URL), caps);
-        driver.get("https://generic.development.dbenterprise.com/");
+        driver.get("https://generic.dbenterprise.com/");
         driver.manage().window().maximize();
         WebElement usernameField = driver.findElement(By.name("username"));
         usernameField.sendKeys("daskoadmin");
@@ -80,7 +80,7 @@ public class lookBook {
         customizeBtn.click();
 
         // Customize Lookbook: start with Assertions; first, wait for page to load
-        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         Assertions.assertEquals("Help Layer", "Help Layer");
         Assertions.assertEquals("Prepared For", "Prepared For");
         Assertions.assertEquals("From", "From");
@@ -194,7 +194,7 @@ public class lookBook {
         driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
 
         // Switch tabs
-        WebElement locationsTab = driver.findElement(By.id("chili-tab-panel__tab_971"));
+        WebElement locationsTab = driver.findElement(By.id("chili-tab-panel__tab_2879"));
         locationsTab.click();
         Assertions.assertEquals("Caption 1", "Caption 1");
         WebElement imageOne = driver.findElement(By.id("chili-variable-uploadButton-Image1"));
@@ -205,7 +205,7 @@ public class lookBook {
         driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
 
         // Switch back to Contact Information tab
-        WebElement contact_info_tab = driver.findElement(By.id("chili-tab-panel__tab_970"));
+        WebElement contact_info_tab = driver.findElement(By.id("chili-tab-panel__tab_2878"));
         contact_info_tab.click();
 
         // Change Logo
