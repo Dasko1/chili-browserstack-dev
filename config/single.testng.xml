@@ -16,13 +16,10 @@
 			<class name="com.demandbridge.single.ChiliApprovalsEdit"></class-->
 			<!--class name="com.demandbridge.single.ChiliApprovals"></class>
 			<class name="com.demandbridge.single.Watermark"></class-->
-=======
 			<!--class name="com.demandbridge.single.ChiliApprovalsEdit1"></class-->
 			<!--class name="com.demandbridge.single.ChiliApprovals"></class>
->>>>>>> d115b633dfcb7d5513d7da07b6c4a6a434a91800
 			<class name="com.demandbridge.single.Watermark"></class>
 			<class name="com.demandbridge.single.Images"></class-->
->>>>>>> b7cb7cfb4212e4895b8fad795426dfc6dc87c259
 		</classes>
 	</test>
 </suite>
