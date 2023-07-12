@@ -4,9 +4,6 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import com.demandbridge.BrowserStackTest;
-import com.demandbridge.single.pages.MailosaurCheck;
-import com.jcraft.jsch.JSchException;
-import com.jcraft.jsch.SftpException;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.*;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -15,8 +12,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 
-import java.net.MalformedURLException;
 import java.net.URL;
+import java.time.Duration;
 
 import static com.codeborne.selenide.Selenide.*;
 
@@ -28,6 +25,7 @@ public class ChiliApprovalsEdit extends BrowserStackTest {
     public static final String AUTOMATE_ACCESS_KEY = "swze39oMCvW69Gsgh8qA";
     public static final String URL = "https://" + AUTOMATE_USERNAME + ":" + AUTOMATE_ACCESS_KEY + "@hub-cloud.browserstack.com/wd/hub";
     public static String x = "";
+
     private static final String orderNumber = "";                                                     // Sends Order Number, l.193.
 
 
@@ -82,9 +80,10 @@ public class ChiliApprovalsEdit extends BrowserStackTest {
         delivery_options.sendKeys(Keys.ENTER);
 
         // Select A Payment Method dropdown: Select credit card.
+        $(By.id("payment_method_cbo")).click();
         $(By.id("payment_method_cbo")).clear();
         $(By.id("payment_method_cbo")).sendKeys("Holder A Dee ending with 1111");
-        $(By.id("payment_method_cbo")).click();
+        $(By.id("payment_method_cbo")).sendKeys(Keys.ENTER);
 
         // Wait for Place This Order Now button to activate
         email.sendKeys("ad@qgowwpz9.mailosaur.net");
@@ -96,7 +95,12 @@ public class ChiliApprovalsEdit extends BrowserStackTest {
         field_1.sendKeys("Field One");
         field_2.sendKeys("Field Two");
         Selenide.sleep(10000);
-        /**/
+
+        // Click the Apply button
+        $(By.id("billing_split_apply_button")).scrollIntoView(true).click();
+        // WebElement apply_btn = driver.findElement(By.id("billing_split_apply_button"));
+        // apply_btn.click();
+        Selenide.sleep(2000);
 
         // WebElement place_order_now_btn = new WebDriverWait(driver, Duration.ofSeconds(30)).until(ExpectedConditions.elementToBeClickable(By.id("checkout_place_order_button")));
         $(By.id("payment_method_cbo")).click();
@@ -130,12 +134,14 @@ public class ChiliApprovalsEdit extends BrowserStackTest {
         $(By.id("value-Name")).sendKeys("Wolfgang Schwanz");
         $(By.id("value-Title")).clear();
         $(By.id("value-Title")).sendKeys("The Great All-Knowing");
+        $(By.id("value-Email")).clear();
+        $(By.id("value-Email")).sendKeys("w.schwanz");
 
         $(By.id("chili-customize-save-button")).click();
         $(By.id("chili-view-proof-text")).click();
-        Selenide.sleep(6500);
+        Selenide.sleep(8500);
         $(By.id("chili-customize-step2b-button")).click();
-        Selenide.sleep(7000);
+        Selenide.sleep(8000);
 
         // Verify Approvals page and push Approve Modifications button
         Assertions.assertEquals("Orders Requiring Approval", "Orders Requiring Approval");
@@ -149,46 +155,10 @@ public class ChiliApprovalsEdit extends BrowserStackTest {
         Assertions.assertEquals("The order has been approved.", "The order has been approved.");
         Selenide.sleep(3000);
 
-        /**/
+        // Click the "Click here to return to the Approval Center" and navigate; the Order Number should not be present.
+        executeJavaScript("EPM.Approval.backtolist();");
+        Selenide.sleep(4500);
+        Assertions.assertEquals("Orders Requiring Approval", "Orders Requiring Approval");
 
-        /*
-        // Assert the changed text in the
-        // Try to download the high-res PDF and XML via an FTP download; read XML to assert the edit in the above l.123
-
-        // The next line finds the cssElement for "Open source" in the URL in l.13.  The next 2 lines strip the html tags & prints it!
-        */
-        /*Elements cssElement = document.select("body > div > div.content > div.col1 > h2:nth-child(11)");
-        Document orderNumber = (Document) Jsoup.parse(String.valueOf(cssElement));
-        System.out.println("The order number is: " + orderNumber.text());*//*
-         */
-
-        // Check Mailosaur for lowres PDF
-        new MailosaurCheck().mailosaurCheckTest();
-
-
-        //Return to Approvals
-        // open("https://generic.development.dbenterprise.com/approval/ApprovalCenter.epm?nhi=250");
-        // Selenide.sleep(20000);
-
-
-        // Setting the status of test as 'passed' or 'failed' based on the condition; if title of the web page contains 'DB Commerce'
-        WebDriverWait wait = new WebDriverWait(driver, 10);
-        try {
-            wait.until(ExpectedConditions.titleContains("DB Demo"));
-            markTestStatus("passed","Yaay, the title contains 'DB Demo'!",driver);
-        }
-        catch(Exception e) {
-            markTestStatus("failed","Title does not contain 'DB Demo'!",driver);
-        }
-
-        driver.quit();
-    }
-
-   // This method accepts the status, reason and WebDriver instance and marks the test on BrowserStack
-    public static void markTestStatus(String status, String reason, WebDriver driver) {
-        JavascriptExecutor jse = (JavascriptExecutor)driver;
-        jse.executeScript("browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\": \""+status+"\", \"reason\": \""+reason+"\"}}");
-        // System.out.println("Expected file download confirmed: " + (jse.executeScript("browserstack_executor: {\"action\": \"fileExists\", \"arguments\": {\"fileName\": \"00-X00248-2_doc_lowres.pdf\"}}")));
-        // System.out.println("Expected file download confirmed: " + (jse.executeScript("browserstack_executor: {\"action\": \"fileExists\", \"arguments\": {\"fileName\": \"00-X00248-2_doc_highres.pdf\"}}")));
     }
 }

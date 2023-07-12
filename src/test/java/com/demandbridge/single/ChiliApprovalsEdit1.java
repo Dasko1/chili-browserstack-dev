@@ -80,16 +80,23 @@ public class ChiliApprovalsEdit1 {
         phone_number.sendKeys("800-448-1484");
 
         // Wait for Place This Order Now button to activate
-        email.sendKeys("ad@qgowwpz9.mailosaur.net");
+        // email.sendKeys("ad@qgowwpz9.mailosaur.net");
         field_1.sendKeys("Field One");
         field_2.sendKeys("Field Two");
-        field_3.sendKeys(Keys.ENTER);
+        field_1.clear();
+        field_2.clear();
         Selenide.sleep(7000);
 
-        email.sendKeys("ad@qgowwpz9.mailosaur.net");
-        field_1.sendKeys("Field One");
-        field_2.sendKeys("Field Two");
+        // email.sendKeys("ad@qgowwpz9.mailosaur.net");
+        field_1.sendKeys("Field 1");
+        field_2.sendKeys("Field 2");
+        field_3.sendKeys("Field Three");
         field_3.sendKeys(Keys.ENTER);
+
+        // Click the Apply button
+        WebElement apply_btn = driver.findElement(By.id("billing_split_apply_button"));
+        $(By.id("billing_split_apply_button")).scrollIntoView(true).click();
+        Selenide.sleep(2000);
 
         WebElement place_order_now_btn = new WebDriverWait(driver, Duration.ofSeconds(30))
                 .until(ExpectedConditions.elementToBeClickable(By.id("checkout_place_order_button")));
@@ -139,7 +146,7 @@ public class ChiliApprovalsEdit1 {
         // Click Approvals link
         WebElement approve_btn = driver.findElement(By.name("approveButton"));                  // Push Approve button
         approve_btn.click();
-        driver.manage().timeouts().implicitlyWait(6, TimeUnit.SECONDS);
+        Selenide.sleep(6000);
         WebElement reason_field = driver.findElement(By.name("reason"));
         reason_field.sendKeys("Approved for test purposes!");
         WebElement confirm_btn = driver.findElement(By.name("confirmButton"));                  // Push Confirm button in modal
@@ -147,7 +154,7 @@ public class ChiliApprovalsEdit1 {
         Assertions.assertEquals("The order has been approved.", "The order has been approved.");
 
         // Setting the status of test as 'passed' or 'failed' based on the condition; if title of the web page contains 'DB Commerce'
-        WebDriverWait wait = new WebDriverWait(driver, 10);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         try {
             wait.until(ExpectedConditions.urlContains("CheckoutV2"));
             markTestStatus("passed","Yaay, the 'Approve Edit' test passed!",driver);
