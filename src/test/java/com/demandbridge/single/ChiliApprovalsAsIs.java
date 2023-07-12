@@ -1,19 +1,23 @@
 package com.demandbridge.single;
 
 import com.codeborne.selenide.Selenide;
-import org.junit.jupiter.api.Assertions;
-import org.openqa.selenium.*;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
+import org.junit.jupiter.api.Assertions;
 
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.Duration;
 import java.util.concurrent.TimeUnit;
+
 
 public class ChiliApprovalsAsIs {
 
@@ -32,7 +36,7 @@ public class ChiliApprovalsAsIs {
         caps.setCapability("browser_version", "latest");
         caps.setCapability("os", "Windows");
         caps.setCapability("name", "ChiliApprovals As Is"); // test name
-        caps.setCapability("build", "ChiliApprovals As Is "); // CI/CD job or build name
+        caps.setCapability("build", "ChiliApprovals As Is"); // CI/CD job or build name
 
         // Go to Generic page and login
         WebDriver driver = new RemoteWebDriver(new URL(URL), caps);
@@ -70,7 +74,7 @@ public class ChiliApprovalsAsIs {
         Selenide.sleep(3500);
 
         // Setting the status of test as 'passed' or 'failed' based on the condition; if title of the web page contains 'DB Commerce'
-        WebDriverWait wait = new WebDriverWait(driver, 10);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         try {
             wait.until(ExpectedConditions.urlContains("generic"));
             markTestStatus("passed","Yaay, the 'Approve As Is' test passed!",driver);

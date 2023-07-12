@@ -11,6 +11,7 @@ import org.testng.annotations.Test;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
 public class ChiliApprovals {
@@ -105,7 +106,7 @@ public class ChiliApprovals {
         Assertions.assertTrue(final_conf_modal.isDisplayed());
         WebElement final_checkout_btn = driver.findElement(By.id("final_place_order_button"));
         final_checkout_btn.click();
-        driver.manage().timeouts().implicitlyWait(8, TimeUnit.SECONDS);
+//        driver.manage().timeouts().implicitlyWait(8, TimeUnit.SECONDS);
 //        WebElement following_reasons = driver.findElement(By.cssSelector("\"#ext-gen64 > div > table > tbody > tr:nth-child(2) > td > div > span"));
 //        WebElement next_day_air_text = driver.findElement(By.xpath("//*[@id=\"ext-gen64\"]/div/table/tbody/tr[2]/td/div/span/ul/li[2]"));
 //        Assertions.assertTrue(following_reasons.isDisplayed());
@@ -113,7 +114,7 @@ public class ChiliApprovals {
 
 
         // Setting the status of test as 'passed' or 'failed' based on the condition; if title of the web page contains 'DB Commerce'
-        WebDriverWait wait = new WebDriverWait(driver, 10);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         try {
             wait.until(ExpectedConditions.titleIs("DB Commerce"));
             markTestStatus("passed","Yaay, the title contains 'DB Commerce'!",driver);
