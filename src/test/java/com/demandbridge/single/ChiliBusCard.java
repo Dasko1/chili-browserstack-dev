@@ -35,7 +35,7 @@ public class ChiliBusCard {
 
         // Go to Generic page and login
         WebDriver driver = new RemoteWebDriver(new URL(URL), caps);
-        driver.get("https://generic.dbenterprise.com/");
+        driver.get("https://generic.development.dbenterprise.com/");                // This also works with PROD.
         driver.manage().window().maximize();
         WebElement usernameField = driver.findElement(By.name("username"));
         usernameField.sendKeys("daskoadmin");
@@ -57,7 +57,7 @@ public class ChiliBusCard {
         WebElement corpColl = driver.findElement(By.linkText("Corporate Collateral"));
         Assertions.assertTrue(corpColl.isDisplayed());
         corpColl.click();
-        Selenide.sleep(7000);
+        Selenide.sleep(15000);
         WebElement busCards = driver.findElement(By.linkText("Business Cards"));
         Assertions.assertTrue(busCards.isDisplayed());
         busCards.click();
@@ -118,38 +118,10 @@ public class ChiliBusCard {
 
         // Visual test to go here to confirm information saved to business cards
 
-        // Profile: Add
-        Selenide.sleep(2000);
-        WebElement add_a_profile = driver.findElement(By.id("chili_customize_add_profile_button"));
-        add_a_profile.click();
-        WebElement cancel_profile = driver.findElement(By.xpath("//*[@id=\"chili_new_profile_name_wrapper\"]/div[1]/a[2]"));
-        cancel_profile.click();
-        Selenide.sleep(2000);
-        add_a_profile.click();
-        WebElement new_profile = driver.findElement(By.id("chili_new_profile_name"));
-        new_profile.click();
-        new_profile.sendKeys("Auto Test Profile");
-        Selenide.sleep(2000);
-        WebElement save_profile_btn = driver.findElement(By.xpath("//*[@id=\"chili_new_profile_name_wrapper\"]/div[1]/a[1]"));
-        save_profile_btn.click();
-        Selenide.sleep(5000);
-        // Check for new profile
-        Selenide.sleep(2000);
+        // Open Profile and select Automation Test Profile
         WebElement show_profiles = driver.findElement(By.name("profileCombo"));
         show_profiles.click();
-        Assertions.assertEquals("Auto Test Profile", "Auto Test Profile");
-        // Delete Profile
-        Selenide.sleep(2000);
-        WebElement delete_profile = driver.findElement(By.id("chili-delete-profile-icon"));
-        delete_profile.click();
-        Selenide.sleep(2000);
-        show_profiles.click();
-        Assertions.assertNotEquals("Auto Test Profile", "");
-        // Change Profile
-        Selenide.sleep(2000);
-        // show_profiles.click();
-        Selenide.sleep(2000);
-        // Open Profile
+        Assertions.assertEquals("Automation Test Profile", "Automation Test Profile");
         show_profiles.sendKeys(Keys.DOWN);
         show_profiles.sendKeys(Keys.DOWN);
         show_profiles.sendKeys(Keys.DOWN);
@@ -184,9 +156,23 @@ public class ChiliBusCard {
         edit_link.click();
         Selenide.sleep(18000);
         Assertions.assertEquals("COR001 - Business Cards", "COR001 - Business Cards");
+        WebElement edit_name = driver.findElement(By.name("Name"));
+        edit_name.clear();
+        edit_name.sendKeys("eduardo sanchez");
+        WebElement edit_title = driver.findElement(By.name("Title"));
+        edit_title.clear();
+        edit_title.sendKeys("southeast area property director");
         WebElement edit_phone = driver.findElement(By.id("value-Phone"));
         edit_phone.clear();
-        edit_phone.sendKeys("410-123-4567");
+        edit_phone.sendKeys("410-765-4321");
+        WebElement edit_email = driver.findElement(By.name("Email"));
+        edit_email.clear();
+        edit_email.sendKeys("e.sanchez");
+        WebElement edit_back = driver.findElement(By.name("Back"));
+        edit_back.clear();
+        edit_back.sendKeys("your experience is everything");
+        edit_back.sendKeys(Keys.RETURN);
+        Selenide.sleep(2000);
         WebElement save_btn = driver.findElement(By.id("chili-customize-save-button"));
         save_btn.click();
         // Push View Proof and then Return to check out buttons
@@ -206,7 +192,7 @@ public class ChiliBusCard {
             markTestStatus("passed","Yaay, the Business Card test passed'!",driver);
         }
         catch(Exception e) {
-            markTestStatus("failed","Title does not contain 'Login.epm'!",driver);
+            markTestStatus("failed","Title does not contain 'CheckoutV2'!",driver);
         }
 
         driver.quit();
