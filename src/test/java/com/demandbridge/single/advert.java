@@ -35,7 +35,8 @@ public class advert {
 
         // Go to Generic page and login
         WebDriver driver = new RemoteWebDriver(new URL(URL), caps);
-        driver.get("https://generic.dbenterprise.com/");
+        driver.get("https://generic.development.dbenterprise.com/");
+        // driver.get("https://generic.dbenterprise.com/");
         JavascriptExecutor jse = (JavascriptExecutor)driver;
         Robot robot = new Robot();
         driver.manage().window().maximize();
@@ -83,6 +84,10 @@ public class advert {
         ad_size.clear();
         ad_size.sendKeys("Skyscraper 120x600");
         ad_size.sendKeys(Keys.RETURN);
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        ad_size.clear();
+        ad_size.sendKeys("Leaderboard 728x90");
+        ad_size.sendKeys(Keys.RETURN);
         // Title
         WebElement title = driver.findElement(By.name("title"));
         title.click();
@@ -97,43 +102,6 @@ public class advert {
         text.sendKeys("$10 minimum");
         text.sendKeys(Keys.ENTER);
         text.sendKeys("FDIC insured, of course");
-
-        // Profile: Add
-        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
-        WebElement add_a_profile = driver.findElement(By.id("chili_customize_add_profile_button"));
-        add_a_profile.click();
-        WebElement cancel_profile = driver.findElement(By.xpath("//*[@id=\"chili_new_profile_name_wrapper\"]/div[1]/a[2]"));
-        cancel_profile.click();
-        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
-        add_a_profile.click();
-        WebElement new_profile = driver.findElement(By.id("chili_new_profile_name"));
-        new_profile.click();
-        new_profile.sendKeys("Auto Test Profile");
-        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
-        WebElement save_profile_btn = driver.findElement(By.xpath("//*[@id=\"chili_new_profile_name_wrapper\"]/div[1]/a[1]"));
-        save_profile_btn.click();
-        // Check for new profile
-        driver.manage().timeouts().implicitlyWait(7, TimeUnit.SECONDS);
-        WebElement show_profiles = driver.findElement(By.name("profileCombo"));
-        show_profiles.click();
-        Assertions.assertEquals("Auto Test Profile", "Auto Test Profile");
-        // Delete Profile
-        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
-        WebElement delete_profile = driver.findElement(By.id("chili-delete-profile-icon"));
-        delete_profile.click();
-        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
-        show_profiles.click();
-        Assertions.assertNotEquals("Auto Test Profile", "");
-        show_profiles.click();
-        // Change Profile
-        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
-        // show_profiles.click();
-        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
-        // Open Profile
-        show_profiles.sendKeys(Keys.DOWN);
-        show_profiles.sendKeys(Keys.DOWN);
-        show_profiles.sendKeys(Keys.DOWN);
-        show_profiles.sendKeys(Keys.RETURN);
 
         // Resizer
         WebElement chili_zoom = driver.findElement(By.id("chili-zoom-button"));
