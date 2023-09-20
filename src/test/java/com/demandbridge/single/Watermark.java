@@ -1,10 +1,11 @@
 package com.demandbridge.single;
 
+import com.demandbridge.BrowserStackTest;
 import com.testautomationguru.utility.PDFUtil;
 
 import java.io.IOException;
 
-public class Watermark {
+public class Watermark extends BrowserStackTest {
 
     public static void main(String[] args) throws IOException {
 
@@ -14,13 +15,17 @@ public class Watermark {
         if (pageCount == 6){
             System.out.println("The flipbook has " + pageCount + " pages!");
         }
+
         if (getText.contains("Lo wR es P ro of")){
             System.out.println("The watermark is present!");
         }
         else { System.out.println("Test fails: the watermark not present."); }
+
         if (getText.contains("generic.com")){
             System.out.println("The suffix 'generic.com' is present!");
         }
-        else { System.out.println("Test fails: the suffix is not present."); }
+        else {
+            System.out.println("Test fails: the suffix is not present.");
+        }
     }
 }

@@ -59,7 +59,7 @@ public class advert {
         // Click on Advertising & go to Mobile Banking App
         WebElement advertising = driver.findElement(By.linkText("Advertising"));
         advertising.click();
-        driver.manage().timeouts().implicitlyWait(4, TimeUnit.SECONDS);
+        Selenide.sleep(5000);
         WebElement mobile_banking = driver.findElement(By.linkText("Mobile Banking Banner Ad"));
         mobile_banking.click();
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);

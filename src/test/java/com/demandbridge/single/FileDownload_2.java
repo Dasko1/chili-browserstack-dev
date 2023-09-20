@@ -37,7 +37,6 @@ public class FileDownload_2 {
         caps.setCapability("os", "Windows");
         caps.setCapability("os_version", "10");
         caps.setCapability("name", "Bstack-[Java] Sample file download");
-        caps.setCapability(FirefoxDriver.PROFILE, profile);
 
         WebDriver driver = new RemoteWebDriver(new URL(URL), caps);
         JavascriptExecutor jse = (JavascriptExecutor) driver;

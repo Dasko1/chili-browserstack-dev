@@ -14,6 +14,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
 public class menu {
@@ -36,7 +37,8 @@ public class menu {
 
         // Go to Generic page and login
         WebDriver driver = new RemoteWebDriver(new URL(URL), caps);
-        driver.get("https://generic.dbenterprise.com/");
+        driver.get("https://generic.development.dbenterprise.com/");
+        // driver.get("https://generic.dbenterprise.com/");
         driver.manage().window().maximize();
         WebElement usernameField = driver.findElement(By.name("username"));
         usernameField.sendKeys("daskoadmin");
@@ -99,7 +101,8 @@ public class menu {
         driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 
         // Go to Menu Items tab
-        WebElement menu_items_tab = driver.findElement(By.id("chili-tab-panel__tab_2899"));
+        WebElement menu_items_tab = driver.findElement(By.id("chili-tab-panel__tab_972"));                  // DEV
+        // WebElement menu_items_tab = driver.findElement(By.id("chili-tab-panel__tab_2899"));
         menu_items_tab.click();
 
         //Tooltips: go from top to down
@@ -211,7 +214,7 @@ public class menu {
 
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         // Setting the status of test as 'passed' or 'failed' based on the condition; if title of the web page contains 'DB Commerce'
-        WebDriverWait wait = new WebDriverWait(driver, 10);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         try {
             wait.until(ExpectedConditions.urlContains("browseDefaultCatalog"));
             markTestStatus("passed","The Brunch Tablescape Test Passed'!",driver);

@@ -12,8 +12,12 @@ import org.testng.annotations.Test;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.executeJavaScript;
+import static java.lang.Thread.sleep;
 import static org.openqa.selenium.Keys.ENTER;
 
 public class lookBook {
@@ -34,10 +38,11 @@ public class lookBook {
         caps.setCapability("os", "Windows");
         caps.setCapability("name", "ChiliLookBook"); // test name
         caps.setCapability("build", "ChiliLookBook 1"); // CI/CD job or build name
+        caps.setCapability("acceptSslCerts", true);
 
         // Go to Generic page and login
         WebDriver driver = new RemoteWebDriver(new URL(URL), caps);
-        driver.get("https://generic.development.dbenterprise.com/");
+        driver.get("https://generic.development.dbenterprise.com/Login.epm");
         driver.manage().window().maximize();
         WebElement usernameField = driver.findElement(By.name("username"));
         usernameField.sendKeys("daskoadmin");
@@ -91,13 +96,16 @@ public class lookBook {
         Assertions.assertEquals("Logo", "Logo");
 
         //Hints: assert that they first appear - use Visual Regression if the hints can't be found
+        Selenide.sleep(7000);
         Assertions.assertEquals("Please refer to the hints", "Please refer to the hints");
         // Now hide hints
         WebElement hideHints = driver.findElement(By.id("ToggleHelp-button-03804BB8-0938-420D-89FE-628CFF0C9019"));
+        WebElement showHints = driver.findElement(By.id("ToggleHelp-button-A6FF4C20-6102-45AB-A055-53C606B7D0BB"));
         Assertions.assertTrue(hideHints.isDisplayed());
         hideHints.click();                                      // Check next if hints are now gone
-        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+        Selenide.sleep(1500);
         Assertions.assertNotEquals("Please refer to the hints", "");
+        Selenide.sleep(1500);
 
         // Edit fields
         driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
@@ -118,32 +126,46 @@ public class lookBook {
         address.sendKeys("Reno Office");
         address.sendKeys(ENTER);
         WebElement email = driver.findElement(By.name("Email"));
+        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
         email.clear();
-        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+        email.sendKeys("mmschwartz");
+        email.sendKeys(ENTER);
+        Selenide.sleep(1500);
+        email.clear();
         email.sendKeys("mschwartz");
-        // Push Save button
-        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
-        WebElement save = driver.findElement(By.id("chili-customize-save-button"));
-        Assertions.assertTrue(save.isDisplayed());
-        save.click();
-        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+        Selenide.sleep(1500);
 
-        // Undo/Redo
+        // Undo/Redo: puts above Message dropdown back to Introductory message
         WebElement undo_btn = driver.findElement(By.id("chili-undo-button"));
         WebElement redo_btn = driver.findElement(By.id("chili-redo-button"));
         undo_btn.click();
         Assertions.assertTrue(redo_btn.isEnabled());
+        Selenide.sleep(1500);
+        // email.click();
         redo_btn.click();
+        showHints.click();
 
-        // Jump To Page:  see address change in ll.145-
+        // Push Save button
+        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+        Selenide.sleep(1500);
+        WebElement save = driver.findElement(By.id("chili-customize-save-button"));
+        Assertions.assertTrue(save.isDisplayed());
+        save.click();
+        Selenide.sleep(1500);
+
+        // Jump To Page:  see address change in ll.145
         WebElement next_btn = driver.findElement(By.id("chili-next-button"));
         WebElement prev_btn = driver.findElement(By.id("chili-previous-button"));
-        next_btn.click();
-        Assertions.assertTrue(prev_btn.isEnabled());
-        next_btn.click();
-        next_btn.click();
         prev_btn.click();
-
+        Selenide.sleep(1000);
+        prev_btn.click();
+        Assertions.assertTrue(prev_btn.isEnabled());
+        prev_btn.click();
+        Selenide.sleep(1000);
+        prev_btn.click();
+        prev_btn.click();
+        Selenide.sleep(1000);
+        next_btn.click();
 
         // Profile: Add
         driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
@@ -161,7 +183,7 @@ public class lookBook {
         save_profile_btn.click();
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         // Check for new profile
-        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+        Selenide.sleep(3000);
         WebElement show_profiles = driver.findElement(By.name("profileCombo"));
         show_profiles.click();
         Assertions.assertEquals("Auto Test Profile", "Auto Test Profile");
@@ -194,7 +216,7 @@ public class lookBook {
         driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
 
         // Switch tabs
-        WebElement locationsTab = driver.findElement(By.id("chili-tab-panel__tab_2879"));
+        WebElement locationsTab = driver.findElement(By.id("chili-tab-panel__tab_971"));
         locationsTab.click();
         Assertions.assertEquals("Caption 1", "Caption 1");
         WebElement imageOne = driver.findElement(By.id("chili-variable-uploadButton-Image1"));
@@ -205,7 +227,7 @@ public class lookBook {
         driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
 
         // Switch back to Contact Information tab
-        WebElement contact_info_tab = driver.findElement(By.id("chili-tab-panel__tab_2878"));
+        WebElement contact_info_tab = driver.findElement(By.id("chili-tab-panel__tab_970"));
         contact_info_tab.click();
 
         // Change Logo
@@ -216,14 +238,25 @@ public class lookBook {
         driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
         WebElement logo = driver.findElement(By.linkText("generic_logo.pdf"));
         logo.click();
+        upload.click();
+        WebElement logo1 = driver.findElement(By.linkText("generic_logo4.png"));
+        logo1.click();
 
         // Resizer
         WebElement zoom_out = driver.findElement(By.id("chili-zoom-out-button"));
         zoom_out.click();
-        driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
+        Selenide.sleep(1500);
+        zoom_out.click();
+        Selenide.sleep(1000);
+        zoom_out.click();
         WebElement zoom = driver.findElement(By.id("chili-zoom-button"));
+        Selenide.sleep(1000);
         zoom.click();
-        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+        Selenide.sleep(2000);
+        zoom.click();
+        Selenide.sleep(2000);
+        zoom.click();
+        Selenide.sleep(2000);
 
         // Push the View Proof button; View Proof disabled for flipbook
         email.clear();
@@ -238,7 +271,7 @@ public class lookBook {
         popout.click();
         driver.manage().timeouts().implicitlyWait(8, TimeUnit.SECONDS);
 
-        // Lines 234-48 are for the flipbook; ll.253-61 are for the lookbook. 
+        // Lines 234-48 are for the flipbook; ll.253-61 are for the lookbook.
         /*WebElement create_flipbook = driver.findElement(By.id("chili-flipbook-text"));
         Assertions.assertTrue(create_flipbook.isEnabled());
         create_flipbook.click();
@@ -269,9 +302,10 @@ public class lookBook {
         approveCheckout.click();
         //driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 
+        new ChiliApprovalsAsIs().chiliApprovalsAsIs_Test();
 
         // Setting the status of test as 'passed' or 'failed' based on the condition; if title of the web page contains 'DB Commerce'
-        WebDriverWait wait = new WebDriverWait(driver, 30);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         try {
             wait.until(ExpectedConditions.urlContains("browseDefaultCatalog"));
             markTestStatus("passed","The LookBook test passed'!",driver);
